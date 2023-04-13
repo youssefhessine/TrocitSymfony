@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Troc index{% endblock %}
+
+{% block body %}
+    <h1>Troc index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdTroc</th>
+                <th>Nom1</th>
+                <th>Nom2</th>
+                <th>Numtel1</th>
+                <th>Numtel2</th>
+                <th>ShippingAdress1</th>
+                <th>ShippingAdress2</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for troc in trocs %}
+            <tr>
+                <td>{{ troc.idTroc }}</td>
+                <td>{{ troc.nom1 }}</td>
+                <td>{{ troc.nom2 }}</td>
+                <td>{{ troc.numtel1 }}</td>
+                <td>{{ troc.numtel2 }}</td>
+                <td>{{ troc.shippingAdress1 }}</td>
+                <td>{{ troc.shippingAdress2 }}</td>
+                <td>{{ troc.description }}</td>
+                <td>
+                    <a href="{{ path('app_troc_show', {'idTroc': troc.idTroc}) }}">show</a>
+                    <a href="{{ path('app_troc_edit', {'idTroc': troc.idTroc}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_troc_new') }}">Create new</a>
+{% endblock %}

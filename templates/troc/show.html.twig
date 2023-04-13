@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Troc{% endblock %}
+
+{% block body %}
+    <h1>Troc</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>IdTroc</th>
+                <td>{{ troc.idTroc }}</td>
+            </tr>
+            <tr>
+                <th>Nom1</th>
+                <td>{{ troc.nom1 }}</td>
+            </tr>
+            <tr>
+                <th>Nom2</th>
+                <td>{{ troc.nom2 }}</td>
+            </tr>
+            <tr>
+                <th>Numtel1</th>
+                <td>{{ troc.numtel1 }}</td>
+            </tr>
+            <tr>
+                <th>Numtel2</th>
+                <td>{{ troc.numtel2 }}</td>
+            </tr>
+            <tr>
+                <th>ShippingAdress1</th>
+                <td>{{ troc.shippingAdress1 }}</td>
+            </tr>
+            <tr>
+                <th>ShippingAdress2</th>
+                <td>{{ troc.shippingAdress2 }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ troc.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_troc_index') }}">back to list</a>
+
+    <a href="{{ path('app_troc_edit', {'idTroc': troc.idTroc}) }}">edit</a>
+
+    {{ include('troc/_delete_form.html.twig') }}
+{% endblock %}

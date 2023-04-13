@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Troc{% endblock %}
+
+{% block body %}
+    <h1>Edit Troc</h1>
+
+    {{ include('troc/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_troc_index') }}">back to list</a>
+
+    {{ include('troc/_delete_form.html.twig') }}
+{% endblock %}
