@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification Offre{% endblock %}
+
+{% block body %}
+    <header class="bg-dark py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder">Modifier offre</h1>
+                </div>
+            </div>
+        </header>
+        <div class="row gx-4 gx-lg-5 align-items-center">
+<div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="{{ asset('img/logo.png') }}" alt="Trocit Logo" /></div>
+    
+    <div class="col-md-6"><br>
+    {{ include('offre/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    <br>
+    {{ include('offre/_delete_form.html.twig') }}<br>
+</div></div></div>
+ <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Trocit 2023</p></div>
+        </footer>
+        <script src="js/scripts.js"></script>
+        </footer>
+{% endblock %}
