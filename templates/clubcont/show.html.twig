@@ -1,0 +1,29 @@
+{% extends 'front.html.twig' %}
+
+{% block title %}Club{% endblock %}
+
+{% block body %}
+    <h1>Club</h1>
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="row gx-4 gx-lg-5 align-items-center">
+                <div class="col-md-6">
+                    <div class="small mb-1">Capacity: {{ club.Capacity }}</div>
+                    <h1 class="display-5 fw-bolder">{{ club.Location }}</h1>
+                    <div class="fs-5 mb-5">
+                        <span>{{ Club_name }}</span>
+                    </div>
+                    <p class="lead">{{ club.ClubName }}
+                    <div class="d-flex">
+                        <a class="btn btn-outline-dark flex-shrink-0" href="{{ path('app_clubcont_index') }}">
+                            Back to list</a>
+                        <a class="btn btn-outline-dark flex-shrink-0" href="{{ path('app_clubcont_edit', {'id': club.id}) }}">
+                            Edit</a>
+
+                       {{ include('clubcont/_delete_form.html.twig') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

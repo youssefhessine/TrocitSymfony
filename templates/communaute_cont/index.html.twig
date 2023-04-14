@@ -1,0 +1,43 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Communaute index{% endblock %}
+
+{% block body %}
+    <h1>Communaute index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Type</th>
+                <th>Location</th>
+                <th>Date</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for communaute in communautes %}
+            <tr>
+                <td>{{ communaute.id }}</td>
+                <td>{{ communaute.Nom }}</td>
+                <td>{{ communaute.Description }}</td>
+                <td>{{ communaute.Type }}</td>
+                <td>{{ communaute.Location }}</td>
+                <td>{{ communaute.Date ? communaute.Date|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_communaute_cont_show', {'id': communaute.id}) }}">show</a>
+                    <a href="{{ path('app_communaute_cont_edit', {'id': communaute.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_communaute_cont_new') }}">Create new</a>
+{% endblock %}

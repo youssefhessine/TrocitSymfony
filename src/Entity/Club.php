@@ -2,62 +2,94 @@
 
 namespace App\Entity;
 
+use App\Repository\ClubRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * Club
- *
- * @ORM\Table(name="club", indexes={@ORM\Index(name="Id_communaute", columns={"Id_communaute"})})
- * @ORM\Entity
- */
+#[ORM\Entity(repositoryClass: ClubRepository::class)]
 class Club
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="Id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="Club_name", type="string", length=250, nullable=false)
-     */
-    private $clubName;
+    #[ORM\Column(length: 254)]
+    private ?string $Club_name = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="Manager_name", type="string", length=250, nullable=false)
-     */
-    private $managerName;
+    #[ORM\Column(length: 254)]
+    private ?string $Manager_name = null;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="Capacity", type="integer", nullable=false)
-     */
-    private $capacity;
+    #[ORM\Column]
+    private ?int $Capacity = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="Location", type="string", length=250, nullable=false)
-     */
-    private $location;
+    #[ORM\Column(length: 254)]
+    private ?string $Location = null;
 
-    /**
-     * @var \Communauté
-     *
-     * @ORM\ManyToOne(targetEntity="Communauté")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="Id_communaute", referencedColumnName="Id")
-     * })
-     */
-    private $idCommunaute;
+    #[ORM\Column]
+    private ?int $Id_communaute = null;
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
+    public function getClubName(): ?string
+    {
+        return $this->Club_name;
+    }
+
+    public function setClubName(string $Club_name): self
+    {
+        $this->Club_name = $Club_name;
+
+        return $this;
+    }
+
+    public function getManagerName(): ?string
+    {
+        return $this->Manager_name;
+    }
+
+    public function setManagerName(string $Manager_name): self
+    {
+        $this->Manager_name = $Manager_name;
+
+        return $this;
+    }
+
+    public function getCapacity(): ?int
+    {
+        return $this->Capacity;
+    }
+
+    public function setCapacity(int $Capacity): self
+    {
+        $this->Capacity = $Capacity;
+
+        return $this;
+    }
+
+    public function getLocation(): ?string
+    {
+        return $this->Location;
+    }
+
+    public function setLocation(string $Location): self
+    {
+        $this->Location = $Location;
+
+        return $this;
+    }
+
+    public function getIdCommunaute(): ?int
+    {
+        return $this->Id_communaute;
+    }
+
+    public function setIdCommunaute(int $Id_communaute): self
+    {
+        $this->Id_communaute = $Id_communaute;
+
+        return $this;
+    }
 }
