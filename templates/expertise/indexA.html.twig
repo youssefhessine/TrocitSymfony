@@ -1,0 +1,32 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Expertise index{% endblock %}
+
+{% block body %}
+    <h1>Expertise index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Description</th>
+                <th>Titre</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for expertise in expertises %}
+            <tr>
+                <td>{{ expertise.id }}</td>
+                <td>{{ expertise.description }}</td>
+                <td>{{ expertise.titre }}</td>
+                <td>{{ expertise.date ? expertise.date|date('Y-m-d') : '' }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

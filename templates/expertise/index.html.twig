@@ -1,0 +1,42 @@
+{% extends 'front.html.twig' %}
+
+{% block title %}Expertise index{% endblock %}
+
+{% block body %}
+ <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+    <h1>Demande expertise:</h1>
+
+    <a href="{{ path('expertise_new') }}" class="btn btn-primary">Créer expertise</a>
+     </div>
+
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                {% for expertise in expertises %}
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">{{ expertise.titre }}</h5>
+                                    <!-- Product price-->
+                                    {{ expertise.idOffre }} - {{ expertise.date ? expertise.date|date('Y-m-d') : '' }}
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center">
+                                    <a class="btn btn-outline-dark mt-auto" href="{{ path('expertise_show', {'id': expertise.id}) }}">
+                                        Show</a>
+                                    <a class="btn btn-outline-dark mt-auto" href="{{ path('expertise_edit', {'id': expertise.id}) }}">
+                                        Edit</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

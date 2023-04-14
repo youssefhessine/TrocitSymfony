@@ -1,0 +1,16 @@
+{% extends 'front.html.twig' %}
+
+{% block title %}Edit Expertise{% endblock %}
+
+{% block body %}
+    <h1>Edit Expertise</h1>
+
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                {{ include('expertise/form.html.twig') }}
+            </div>
+        </div>
+    </section>
+    <a class="btn btn-outline-dark mt-auto" href="{{ path('expertise_index') }}">back to list</a>
+{% endblock %}

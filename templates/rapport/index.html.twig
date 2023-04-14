@@ -1,0 +1,41 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Rapport{% endblock %}
+
+{% block body %}
+    <h1>Rapport index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Reference</th>
+                <th>TitreRapport</th>
+                <th>DescriptionProduit</th>
+                <th>DateRapport</th>
+                <th>Image</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for rapport in rapports %}
+            <tr>
+                <td>{{ rapport.reference }}</td>
+                <td>{{ rapport.titreRapport }}</td>
+                <td>{{ rapport.descriptionProduit }}</td>
+                <td>{{ rapport.dateRapport ? rapport.dateRapport|date('Y-m-d') : '' }}</td>
+                <td>{{ rapport.image }}</td>
+                <td>
+                    <a href="{{ path('rapport_show', {'reference': rapport.reference}) }}" class="btn btn-primary">Afficher</a>
+                    <a href="{{ path('rapport_edit', {'reference': rapport.reference}) }}" class="btn btn-secondary">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('rapport_new') }}" class="btn btn-primary">Créer un nouveau rapport</a>
+{% endblock %}
