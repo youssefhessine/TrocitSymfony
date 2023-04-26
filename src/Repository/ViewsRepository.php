@@ -13,15 +13,16 @@ class ViewsRepository extends ServiceEntityRepository
         parent::__construct($registry, Views::class);
     }
 
-    public function getMostViewedCategory()
+    public function findOneByMostViewedCategoryName()
     {
         $qb = $this->createQueryBuilder('v')
-            ->select('c.nom, COUNT(v.id) AS views')
-            ->leftJoin('v.nomCategorie', 'c')
-            ->groupBy('c.id')
+            ->select('v.nomCategorie AS category, COUNT(v.id) AS views')
+            ->groupBy('v.nomCategorie')
             ->orderBy('views', 'DESC')
             ->setMaxResults(1);
-
-        return $qb->getQuery()->getSingleResult();
+    
+        $result = $qb->getQuery()->getOneOrNullResult();
+    
+        return $result ? $result['category'] : null;
     }
 }

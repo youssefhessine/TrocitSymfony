@@ -7,6 +7,7 @@ use App\Entity\Categorie;
 use App\Form\OffreType;
 use App\Repository\OffreRepository;
 use App\Entity\User;
+use App\Entity\Views;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,8 +28,23 @@ class OffreController extends AbstractController
     #[Route('/', name: 'app_offre_index', methods: ['GET'])]
     public function index(OffreRepository $offreRepository): Response
     {
+      
+        // execution fn  ( metier popularité )  
+        $entityManager = $this->getDoctrine()->getManager();
+        
+        $qb = $entityManager->createQueryBuilder()
+            ->select('v.nomCategorie AS category, COUNT(v.id) AS views')
+            ->from('App\Entity\Views', 'v')
+            ->groupBy('v.nomCategorie')
+            ->orderBy('views', 'DESC')
+            ->setMaxResults(1);
+
+        $result = $qb->getQuery()->getOneOrNullResult();
+
+        $mostViewedCategory = $result['category'] ?? null;
+        // fin 
         return $this->render('offre/index.html.twig', [
-            'offres' => $offreRepository->findAll(),
+            'offres' => $offreRepository->findAll(),'mostViewedCategory' => $mostViewedCategory,
         ]);
     }
 
@@ -66,7 +82,30 @@ class OffreController extends AbstractController
     #[Route('/{id}', name: 'app_offre_show', methods: ['GET'])]
     public function show(Offre $offre , MailerService $mailerService): Response
     {
-      
+            // ( add view )metier popularité  
+
+
+        $viewRepository = $this->getDoctrine()->getRepository(Views::class);
+        
+  
+            // $view = $viewRepository->find(['offre' => $offre->getId(), 'user' => $user->getId()]);
+            $userid = 2;
+            $view = $viewRepository->findOneBy([
+                'idOffre' => $offre->getId(),
+                'idUser' => $userid
+            ]);
+            //verif ken el view existe ou non 
+            if (!$view) {
+                $entityManager = $this->getDoctrine()->getManager();
+                $newView = new Views();
+                $newView->setIdOffre($offre->getId());
+                $newView->setIdUser($userid);
+                $newView->setNomCategorie($offre->getNomCategorie()->getNom());
+                $entityManager->persist($newView);
+                $entityManager->flush();
+            }
+         
+        
             return $this->render('offre/show.html.twig', [
                 'offre' => $offre,
             ]);
