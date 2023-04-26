@@ -41,6 +41,40 @@ class Views
      * @ORM\Column(name="nom_categorie", type="string", length=255, nullable=false)
      */
     private $nomCategorie;
+    public function getIdOffre(): ?int
+    {
+        return $this->idOffre;
+    }
 
+    public function setIdOffre(int $idOffre): self
+    {
+        $this->idOffre = $idOffre;
+
+        return $this;
+    }
+
+    public function getIdUser(): ?int
+    {
+        return $this->idUser;
+    }
+
+    public function setIdUser(int $idUser): self
+    {
+        $this->idUser = $idUser;
+
+        return $this;
+    }
+
+    public function getNomCategorie(): ?string
+    {
+        return $this->nomCategorie;
+    }
+
+    public function setNomCategorie(string $nomCategorie): self
+    {
+        $this->nomCategorie = $nomCategorie;
+
+        return $this;
+    }
 
 }

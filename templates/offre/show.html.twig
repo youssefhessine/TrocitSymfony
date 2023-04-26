@@ -24,7 +24,15 @@
                             <span style="color:#ac0000">Date  : {{ offre.date ? offre.date|date('Y-m-d') : '' }}</span>
                         </div>
                         <div class="small mb-1">Categorie : {{ offre.nomCategorie.nom }}</div><br>
-                        <button class="btn btn-outline-dark mt-auto"  onclick="sendEmail()">Troquer</button><br><br>
+                        <button class="btn btn-outline-dark mt-auto" id="troquer-btn" >Troquer</button><br><br>
+                                    <script>
+                                    document.getElementById("troquer-btn").addEventListener("click", function() {
+                                    var xhr = new XMLHttpRequest();
+                                    xhr.open("POST", "{{ path('app_offre_troquer', {'id': offre.id}) }}");
+                                    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                                    xhr.send(JSON.stringify({}));
+                                    });
+                                    </script>
                           <a class="btn btn-outline-dark mt-auto" href="{{ path('app_offre_edit', {'id': offre.id}) }}">Modifier </a><br><br>
                      
                         <div class="d-flex">
