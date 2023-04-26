@@ -9,6 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Dompdf\Dompdf;
+
 
 #[Route('/rapport')]
 class RapportController extends AbstractController
@@ -79,4 +81,40 @@ class RapportController extends AbstractController
 
         return $this->redirectToRoute('rapport_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/rapport/{reference}/pdf', name: 'export_pdf', methods: ['GET'])]
+   
+    public function exportPdf($reference)
+    {
+        // Get the rapport by reference
+        $rapport = $this->getDoctrine()
+            ->getRepository(Rapport::class)
+            ->findOneBy(['reference' => $reference]);
+    
+        // Generate the HTML for the PDF
+        $html = $this->renderView('rapport/rapportPDF.html.twig', [
+            'rapport' => $rapport,
+        ]);
+    
+        // Generate the PDF
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+    
+        // Create a response object with the PDF content
+        $response = new Response();
+        $response->setContent($dompdf->output()); 
+           
+          // Set the content type header
+    $response->headers->set('Content-Type', 'application/pdf');
+
+    // Set the file name header
+    $response->headers->set('Content-Disposition', 'attachment;filename="rapport.pdf"');
+
+    // Return the response object containing the PDF content
+    return $response;
+           
+}
+
 }

@@ -1,0 +1,26 @@
+<table class="table">
+    <tbody>
+    <h1>Rapport </h1>
+        <tr>
+            <th>Reference</th>
+            <td>{{ rapport.reference }}</td>
+        </tr>
+        <tr>
+            <th>TitreRapport</th>
+            <td>{{ rapport.titreRapport }}</td>
+        </tr>
+        <tr>
+            <th>DescriptionProduit</th>
+            <td>{{ rapport.descriptionProduit }}</td>
+        </tr>
+        <tr>
+            <th>DateRapport</th>
+            <td>{{ rapport.dateRapport ? rapport.dateRapport|date('Y-m-d') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Image</th>
+            <td>{{ rapport.image }}</td>
+        </tr>
+    </tbody>
+</table>
+

@@ -7,7 +7,7 @@
 
     {{ include('rapport/form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('rapport_index') }}">back to list</a>
+    <a href="{{ path('rapport_index') }}" class="btn btn-secondary">back to list</a>
 
-    {{ include('rapport/delete.html.twig') }}
+    {{ include('rapport/delete.html.twig', {'button_label': 'delete'}) }}
 {% endblock %}
