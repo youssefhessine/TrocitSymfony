@@ -19,10 +19,15 @@
         </header><br>
          <section class="py-5">
          <div class="container px-4 px-lg-5 mt-5">
+
+<p style="color:black;font-size:25px;">Notre categorie populaire : <!--{mostViewedCategory.nom}--></p><br><br>
          <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-        <tbody>
+      
+        
             {% for offre in offres %}
+        
         <div class="col mb-5">
+        
                         <div class="card h-100">
                             <center>
                             <img class="card-img-top" src="{{ asset('uploads/' ~ offre.imageFilename) }}" alt="{{ offre.titre }} image" />

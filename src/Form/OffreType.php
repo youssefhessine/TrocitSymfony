@@ -30,7 +30,7 @@ class OffreType extends AbstractType
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Le titre ne doit pas être vide.'
-                    ]),//^[a-zA-Z0-9]+(?:\s+[a-zA-Z]+(?:\s+[a-zA-Z0-9]+)*)?$/
+                    ]),
                     new Length(['min' => 3 ,
                     'minMessage' => 'Le longueure de titre doit étre au moins de 3 caractères '
                     ]),

@@ -23,7 +23,7 @@ class CategorieType extends AbstractType
                         'message' => 'Le nom ne doit pas être vide.'
                     ]),
                     new Length(['min' => 2 ,
-                    'minMessage' => 'Le longueure de nom doit étre au moins de 3 caractères .'
+                    'minMessage' => 'Le longueure de nom doit étre au moins de 2 caractères .'
                     ]),
                     new Regex([
                         'pattern' => '/^[a-zA-Z\s]*$/',

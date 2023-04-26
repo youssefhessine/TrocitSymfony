@@ -24,9 +24,12 @@
                             <span style="color:#ac0000">Date  : {{ offre.date ? offre.date|date('Y-m-d') : '' }}</span>
                         </div>
                         <div class="small mb-1">Categorie : {{ offre.nomCategorie.nom }}</div><br>
+                        <button class="btn btn-outline-dark mt-auto"  onclick="sendEmail()">Troquer</button><br><br>
+                          <a class="btn btn-outline-dark mt-auto" href="{{ path('app_offre_edit', {'id': offre.id}) }}">Modifier </a><br><br>
+                     
                         <div class="d-flex">
-                            <a class="btn btn-outline-dark mt-auto" href="{{ path('app_offre_edit', {'id': offre.id}) }}">Modifier </a>
-                           {{ include('offre/_delete_form.html.twig') }}
+                                {{ include('offre/_delete_form.html.twig') }}
+                          
                              </div>
                          
                        

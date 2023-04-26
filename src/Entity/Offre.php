@@ -200,7 +200,7 @@ public function uploadImage(): void
             $newFilename
         );
     } catch (FileException $e) {
-        // TODO: handle exception
+        
     }
 
     $this->setImageFilename($newFilename);

@@ -2,15 +2,19 @@
 
 namespace App\Entity;
 
+use App\Validator\Constraints\UniqueNom;
 use App\Repository\CategorieRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Validator\Constraints as AppAssert;
+
 /**
  * Categorie
  *
  * @ORM\Table(name="categorie")
  * @ORM\Entity
+ *
  */
 class Categorie
 {
@@ -19,7 +23,6 @@ class Categorie
      *
      * @ORM\Column(name="nom", type="string", length=255, nullable=false)
      * @ORM\Id
-     * 
      */
     private $nom;
 
