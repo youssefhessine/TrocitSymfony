@@ -81,15 +81,15 @@ class OffreController extends AbstractController
 
     #[Route('/{id}', name: 'app_offre_show', methods: ['GET'])]
     public function show(Offre $offre , MailerService $mailerService): Response
-    {
-            // ( add view )metier popularité  
-
+    {    
+        // ( add view ) metier popularité  
 
         $viewRepository = $this->getDoctrine()->getRepository(Views::class);
         
   
             // $view = $viewRepository->find(['offre' => $offre->getId(), 'user' => $user->getId()]);
-            $userid = 2;
+            $userid = 10;
+
             $view = $viewRepository->findOneBy([
                 'idOffre' => $offre->getId(),
                 'idUser' => $userid
@@ -116,101 +116,28 @@ public function troquer(Offre $offre, MailerService $mailerService): Response
 {
  
           // mailing : 
-          $transport = Transport::fromDsn('smtp://trocitesprit2023@gmail.com:nzllowkwnfjhtxfz@smtp.gmail.com:587');
+            $transport = Transport::fromDsn('smtp://trocitesprit2023@gmail.com:nzllowkwnfjhtxfz@smtp.gmail.com:587');
 
-$mailer = new Mailer($transport);
+            $mailer = new Mailer($transport);
 
-$email = (new Email());
+            $email = (new Email());
 
-$email->from('trocitesprit2023@gmail.com');
+            $email->from('trocitesprit2023@gmail.com');
 
-$email->to(
-    'youssefhessine17@gmail.com'
-);
+            $email->to('youssefhessine17@gmail.com');
 
-$email->subject('Demande de troc pour votre offre');
+            $email->subject('Demande de troc pour votre offre');
+            
+            $email->html(
+                $this->renderView('email/template.html.twig', [
+                    'offre' => $offre,
+                ])
+            );
 
-
-$email->text('');
-
-
-$email->html('
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<title>Offer Details</title>
-	<style>
-		body {
-			font-family: Arial, sans-serif;
-			font-size: 14px;
-			line-height: 1.6;
-			background-color: #f1f1f1;
-			padding: 20px;
-		}
-		table {
-			border-collapse: collapse;
-			margin-top: 20px;
-			margin-bottom: 20px;
-			width: 100%;
-		}
-		 td {
-			padding: 10px;
-			text-align: left;
-			border: 1px solid #ddd;
-          
-		}
-		th {
-			background-color: #198754;
-            padding: 10px;
-			text-align: left;
-			border: 1px solid #ddd;
-            color:white;
-		}
-        footer {
-			margin-top: 15px;
-			background-color: #198754;
-			color: white;
-			padding: 15px;
-			text-align: center;
-		}
-	
-	</style>
-</head>
-<body>
-    <p>Bonjour,</p>
-	<p>Nous espérons que vous allez bien. Nous vous informons qu\'un troqueur souhaite troquer avec vous pour l\'offre suivante:</p>
-	<table>
-		<thead>
-			<tr>
-				<th>Titre</th>
-				<th>Type</th>
-				<th>Description</th>
-				<th>Date</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>'.$offre->getTitre().'</td>
-				<td>'.$offre->getType().'</td>
-				<td>'.$offre->getDescription().'</td>
-                <td>'.date('d/m/Y', strtotime($offre->getDate()->format('Y-m-d'))).'</td>
-            </tr>
-		</tbody>
-	</table>
-	<p>Cordialement,</p>
-	<p>L\'équipe de Trocit</p>
-    <footer>
-    <p>&copy; 2023 Trocit. Tous droits réservés.</p>
-</footer>
-    </body>
-</html>
-'); 
-
-   try {
-    $mailer->send($email);
-    } catch (TransportExceptionInterface $e) {
-        }
+            try {
+                $mailer->send($email);
+                } catch (TransportExceptionInterface $e) {
+                    }
         return $this->render('offre/show.html.twig', [
             'offre' => $offre,
         ]);
