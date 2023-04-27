@@ -25,6 +25,8 @@ class Wallet
     private ?string $dateTransaction  = null ;
 
     
+    
+
     public function getIdWallet(): ?int
     {
         return $this->idWallet;

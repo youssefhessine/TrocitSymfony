@@ -11,8 +11,7 @@ use App\Repository\UserRepository;
 
 #[UniqueEntity(fields : "email",message :"L'email que vous avez indiqué est déja utilisé !")]
 
-class User
-{
+class User {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -41,7 +40,7 @@ class User
     #[ORM\Column(length:256)]
     private ?string $adresse  = null ;
 
-    #[ORM\Column(length:256)]
+    #[ORM\Column(length:25)]
     private ?string $password  = null ;
 
 
@@ -172,5 +171,6 @@ class User
         return $this;
     }
 
+    
 
 }

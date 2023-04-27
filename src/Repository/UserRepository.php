@@ -7,7 +7,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 
-class UserRepository extends ServiceEntityRepository
+class UserRepository extends ServiceEntityRepository 
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -33,6 +33,17 @@ class UserRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
+    public function findOneByPassword($password): ?User
+{
+    return $this->createQueryBuilder('u')
+        ->andWhere('u.password = :password')
+        ->setParameter('password', $password)
+        ->getQuery()
+        ->getOneOrNullResult();
+}
 
+
+
+    
 
 }
