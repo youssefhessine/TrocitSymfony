@@ -1,38 +1,48 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseFront.html.twig' %}
 
 {% block title %}Offre{% endblock %}
 
 {% block body %}
-    <h1>Offre</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ offre.id }}</td>
-            </tr>
-            <tr>
-                <th>Titre</th>
-                <td>{{ offre.titre }}</td>
-            </tr>
-            <tr>
-                <th>Type</th>
-                <td>{{ offre.type }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ offre.description }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{{ offre.date ? offre.date|date('Y-m-d') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_offre_index') }}">back to list</a>
-
-    <a href="{{ path('app_offre_edit', {'id': offre.id}) }}">edit</a>
-
-    {{ include('offre/_delete_form.html.twig') }}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="col-md-6"><img style="width:200px!important;" src="{{ asset('img/logo.png') }}" alt="Trocit Logo" /></div>
+    <div class="container px-4 px-lg-5">
+        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{ path('app_offre_new') }}">Ajouter un nouveau offre</a></div>
+    </div>
+</nav>
+<section class="py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="{{ asset('uploads/' ~ offre.imageFilename) }}" alt="{{ offre.titre }} image " /></div>
+            <div class="col-md-6">
+                <h1 class="display-5 fw-bolder">{{ offre.titre }}</h1>
+                <div class="fs-5 mb-5">
+                    <span style="color:#ac0000">Type :  {{ offre.type }}</span>
+                </div>
+                <p class="lead">{{ offre.description }}</p>
+                <div class="fs-5 mb-5">
+                    <span style="color:#ac0000">Date  : {{ offre.date ? offre.date|date('Y-m-d') : '' }}</span>
+                </div>
+                <div class="small mb-1">Categorie : {{ offre.nomCategorie.nom }}</div>
+                <div class="d-flex">
+                    <a class="btn btn-outline-dark mt-auto" href="#" onclick="openTrocWindow('{{ path('app_troc_new', {'id': offre.id}) }}')">Troquer </a>
+                    <a class="btn btn-outline-dark mt-auto" href="{{ path('app_offre_edit', {'id': offre.id}) }}">Modifier </a>
+                    {{ include('offre/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+        <div class="d-flex">
+            <a class="btn btn-outline-dark mt-auto"  href="{{ path('app_offre_index') }}">Les offres</a>
+        </div>
+    </div>
+</section>
+<footer class="py-5 bg-dark">
+    <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Trocit 2023</p></div>
+</footer>
+<script src="js/scripts.js"></script>
+<script>
+    function openTrocWindow(url) {
+        window.open(url, "Troc Window", "width=500,height=500");
+    }
+</script>
 {% endblock %}

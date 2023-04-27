@@ -2,12 +2,14 @@
 
 {% block title %}Edit Troc{% endblock %}
 
-{% block body %}
+{% block body %} 
+
     <h1>Edit Troc</h1>
 
-    {{ include('troc/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('troc/_form.html.twig', {'button_label': 'Mettre a jour'}) }}
 
-    <a href="{{ path('app_troc_index') }}">back to list</a>
+    <a href="{{ path('app_troc_index') }}">Retour</a>
 
     {{ include('troc/_delete_form.html.twig') }}
 {% endblock %}
+

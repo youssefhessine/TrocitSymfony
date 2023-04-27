@@ -7,6 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\LivraisonRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 
 
@@ -21,17 +23,18 @@ class Livraison
     private ?int $idLivraison = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    #[Assert\GreaterThanOrEqual("today")]
     private ?\DateTimeInterface $dateDemande = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\GreaterThanOrEqual("today")]
     private ?\DateTimeInterface $dateLivraison = null;
 
     #[ORM\Column(length: 256)] 
     private ?string $etatLivraison = null ;
 
-    #[ORM\ManyToMany(targetEntity: Troc::class, mappedBy: 'livraisons')]
-    private Collection $idTroc;
+    #[ORM\ManyToOne(targetEntity: Troc::class)]
+    #[ORM\JoinColumn(name: 'id_troc', referencedColumnName: 'id_troc')]
+    private ?Troc $idTroc = null;
 
 
     #[ORM\ManyToOne(targetEntity: User::class)]
@@ -40,10 +43,7 @@ class Livraison
 
     
 
-    public function __construct()
-    {
-        $this->idTroc = new ArrayCollection();
-    }
+
 
 
     public function getIdLivraison(): ?int
@@ -89,20 +89,18 @@ class Livraison
 
     public function getIdTroc(): ?Troc
     {
-        if ($this->idTroc->isEmpty()) {
-            return null;
-        }
-    
-        return $this->idTroc->first();
+        return $this->idTroc;
     }
     
 
     public function setIdTroc($idTroc): self
     {
         if ($idTroc instanceof Troc) {
-            $this->idTroc = new ArrayCollection([$idTroc]);
-        } else {
             $this->idTroc = $idTroc;
+        } elseif ($idTroc instanceof ArrayCollection) {
+            $this->idTroc = $idTroc->toArray();
+        } else {
+            $this->idTroc = null;
         }
     
         return $this;

@@ -13,6 +13,14 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/troc')]
 class TrocController extends AbstractController
 {
+
+    #[Route('/front', name: 'display_front', methods: ['GET'])]
+    public function indexAdmin(): Response
+    {
+
+        return $this->render('troc/showFront.html.twig');
+    }
+
     #[Route('/', name: 'app_troc_index', methods: ['GET'])]
     public function index(TrocRepository $trocRepository): Response
     {
@@ -59,7 +67,6 @@ class TrocController extends AbstractController
 
             return $this->redirectToRoute('app_troc_index', [], Response::HTTP_SEE_OTHER);
         }
-
         return $this->renderForm('troc/edit.html.twig', [
             'troc' => $troc,
             'form' => $form,

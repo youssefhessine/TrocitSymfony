@@ -3,8 +3,14 @@
 {% block title %}Troc{% endblock %}
 
 {% block body %}
-    <h1>Troc</h1>
+<br>
+<br>
+<br>
 
+    <h1>Troc</h1>
+    <div>
+<div style= "display: flex; align-items: center;justify-content:center; margin-top:50px;padding:10px;">
+<br>
     <table class="table">
         <tbody>
             <tr>
@@ -41,10 +47,11 @@
             </tr>
         </tbody>
     </table>
+</div>
+<button type="button" onclick="window.location.href='{{ path('app_troc_index') }}'" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer;">Retour</button>
 
-    <a href="{{ path('app_troc_index') }}">back to list</a>
-
-    <a href="{{ path('app_troc_edit', {'idTroc': troc.idTroc}) }}">edit</a>
-
+<button type="button" onclick="window.location.href='{{ path('app_troc_edit', {'idTroc': troc.idTroc}) }}'" style="background-color: #008CBA; color: white; padding: 10px 20px; border: none; cursor: pointer;">Edit</button>
+ <br><br>   
+</div>
     {{ include('troc/_delete_form.html.twig') }}
 {% endblock %}

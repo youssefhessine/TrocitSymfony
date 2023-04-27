@@ -21,6 +21,13 @@ class LivraisonController extends AbstractController
         ]);
     }
 
+    #[Route('/admin', name: 'display_admin', methods: ['GET'])]
+    public function indexAdmin(): Response
+    {
+
+        return $this->render('admin/index.html.twig');
+    }
+
     #[Route('/new', name: 'app_livraison_new', methods: ['GET', 'POST'])]
     public function new(Request $request, LivraisonRepository $livraisonRepository): Response
     {

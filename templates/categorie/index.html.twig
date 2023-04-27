@@ -1,0 +1,112 @@
+
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Categorie {% endblock %}
+
+
+{% block body %}
+
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Gestion Offre</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+      </nav>
+         <a  class="btn btn-outline-dark mt-auto" href="{{ path('app_categorie_new') }}">Ajouter categorie</a>
+           <center> <h3>Les Categories </h3></center>
+
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+      <div class="row">
+
+
+         <section class="py-5">
+         <div class="container px-4 px-lg-5 mt-5">
+         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        <tbody>
+            {% for categorie in categories %}
+        <div class="col mb-5">
+                        <div class="card h-100">
+                        
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    
+                                    <h4 style="color:#198754">{{ categorie.nom }}</h4>
+                                   <h6 style="color:#ac0000"> Description :  {{ categorie.description }}</h6>
+                                   
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{ path('app_categorie_edit', {'nom': categorie.nom}) }}"> Modifier </a></div>
+                                 
+                                    <br>
+                                    
+                                    <center>
+                                
+                                   {{ include('categorie/_delete_form.html.twig') }}
+                                   
+                                   </center>
+
+                            </div>
+                        </div>
+                    </div>
+      
+        {% endfor %}
+     
+         
+     
+
+    </div>
+    
+    </div>
+    
+ </section><hr>
+ <br><br><center><h3>Les Offres </h3></center>
+  <section class="py-5">
+         <div class="container px-4 px-lg-5 mt-5">
+         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        <tbody>
+            {% for offre in offres %}
+        <div class="col mb-5">
+                        <div class="card h-100">
+                            <center>
+                            <img class="card-img-top" src="{{ asset('uploads/' ~ offre.imageFilename) }}" alt="{{ offre.titre }} image" />
+                            </center>
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    
+                                    <h4 class="fw-bolder">Titre: {{ offre.titre }}</h4>
+                                   <h6 style="color:#ac0000"> Type :  {{ offre.type }}</h6>
+                                   <h4>Description : {{ offre.description }}</h5><br>
+                                   <h7> Date de création : {{ offre.date ? offre.date|date('Y-m-d') : '' }}</h5><br><br>
+                                   <h7>Categorie : {{ offre.nomCategorie.nom }}</h5>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                  <center>
+                                
+                                   {{ include('offre/_delete_form.html.twig') }}
+                                   
+                                   </center>                            </div>
+                        </div>
+                    </div>
+      
+        {% endfor %}
+
+    </div>
+    </div>
+ </section>
+
+
+
+
+
+ 
+{% endblock %}

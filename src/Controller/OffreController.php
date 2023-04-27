@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Offre;
+use App\Entity\Categorie;
 use App\Form\OffreType;
 use App\Repository\OffreRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -29,6 +30,16 @@ class OffreController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $imageFile = $form['imageFile']->getData();
+
+            if ($imageFile) {
+                $newFilename = uniqid().'.'.$imageFile->guessExtension();
+                $imageFile->move(
+                    $this->getParameter('offres_directory'),
+                    $newFilename
+                );
+                $offre->setImageFilename($newFilename);
+            }
             $offreRepository->save($offre, true);
 
             return $this->redirectToRoute('app_offre_index', [], Response::HTTP_SEE_OTHER);
@@ -37,6 +48,7 @@ class OffreController extends AbstractController
         return $this->renderForm('offre/new.html.twig', [
             'offre' => $offre,
             'form' => $form,
+           // 'categorie' => $categorieRepository->findAll(),
         ]);
     }
 
@@ -55,8 +67,19 @@ class OffreController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $offreRepository->save($offre, true);
+           // $offre->setIdUser(11);
+            $imageFile = $form['imageFile']->getData();
 
+            if ($imageFile) {
+                $newFilename = uniqid().'.'.$imageFile->guessExtension();
+                $imageFile->move(
+                    $this->getParameter('offres_directory'),
+                    $newFilename
+                );
+                $offre->setImageFilename($newFilename);
+            }
+            $offreRepository->save($offre, true);
+            
             return $this->redirectToRoute('app_offre_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -75,4 +98,14 @@ class OffreController extends AbstractController
 
         return $this->redirectToRoute('app_offre_index', [], Response::HTTP_SEE_OTHER);
     }
+     /**
+     * @Route("/gerer-offre", name="app_gerer_offre")
+     */
+    public function gererOffre(): Response
+    {
+        return $this->render('gerer_offre.html.twig');
+    }
+   
+
+
 }

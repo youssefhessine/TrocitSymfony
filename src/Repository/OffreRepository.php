@@ -23,6 +23,13 @@ class OffreRepository extends ServiceEntityRepository
 
     public function save(Offre $entity, bool $flush = false): void
     {
+        $entity->uploadImage();
+
+        if (!$entity->getDate()) {
+            $entity->setDate(new \DateTimeImmutable());
+        }
+    
+     
         $this->getEntityManager()->persist($entity);
 
         if ($flush) {
@@ -38,6 +45,16 @@ class OffreRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function findOffresByCategorie(string $nomCategorie): array
+{
+    $qb = $this->createQueryBuilder('o')
+        ->join('o.nomCategorie', 'c')
+        ->where('c.nom = :nomCategorie')
+        ->setParameter('nomCategorie', $nomCategorie)
+        ->getQuery();
+
+    return $qb->getResult();
+}
 
 //    /**
 //     * @return Offre[] Returns an array of Offre objects
