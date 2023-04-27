@@ -12,7 +12,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Service\MailerService;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\Transport;
@@ -80,7 +79,7 @@ class OffreController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_offre_show', methods: ['GET'])]
-    public function show(Offre $offre , MailerService $mailerService): Response
+    public function show(Offre $offre ): Response
     {    
         // ( add view ) metier popularité  
 
@@ -112,7 +111,7 @@ class OffreController extends AbstractController
     }
 
     #[Route('/{id}/troquer', name: 'app_offre_troquer', methods: ['POST'])]
-public function troquer(Offre $offre, MailerService $mailerService): Response
+public function troquer(Offre $offre): Response
 {
  
           // mailing : 
