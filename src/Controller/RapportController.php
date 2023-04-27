@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Dompdf\Dompdf;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 
 #[Route('/rapport')]
@@ -83,8 +84,7 @@ class RapportController extends AbstractController
     }
 
     #[Route('/rapport/{reference}/pdf', name: 'export_pdf', methods: ['GET'])]
-   
-    public function exportPdf($reference)
+    public function exportPdf($reference, Request $request)
     {
         // Get the rapport by reference
         $rapport = $this->getDoctrine()
@@ -104,17 +104,21 @@ class RapportController extends AbstractController
     
         // Create a response object with the PDF content
         $response = new Response();
-        $response->setContent($dompdf->output()); 
-           
-          // Set the content type header
-    $response->headers->set('Content-Type', 'application/pdf');
-
-    // Set the file name header
-    $response->headers->set('Content-Disposition', 'attachment;filename="rapport.pdf"');
-
-    // Return the response object containing the PDF content
-    return $response;
-           
-}
+        $response->setContent($dompdf->output());
+    
+        // Set the content type header
+        $response->headers->set('Content-Type', 'application/pdf');
+    
+        // Set the file name header
+        $response->headers->set('Content-Disposition', 'attachment;filename="rapport.pdf"');
+    
+        // Save the PDF URL in session
+        $pdfUrl = $this->generateUrl('export_pdf', ['reference' => $reference], UrlGeneratorInterface::ABSOLUTE_URL);
+        $request->getSession()->set('pdf_url', $pdfUrl);
+    
+        // Return the response object containing the PDF content
+        return $response;
+    }
+    
 
 }

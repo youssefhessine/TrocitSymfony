@@ -1,26 +1,73 @@
+<style>
+    body {
+        background-color: #f5f5f5;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        color: #333;
+        line-height: 1.5;
+    }
+    h1 {
+        color: red;
+        font-size: 36px;
+        margin-bottom: 40px;
+        text-align: center;
+        text-transform: uppercase;
+    }
+    table {
+        background-color: #fff;
+        border-collapse: collapse;
+        margin: 40px auto;
+        width: 80%;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    }
+    th {
+        background-color: #f2f2f2;
+        border: 1px solid #ccc;
+        padding: 20px 10px;
+        text-align: left;
+        width: 30%;
+    }
+    td {
+        border: 1px solid #ccc;
+        padding: 20px 10px;
+    }
+    img {
+        max-width: 100%;
+        display: block;
+        margin: 0 auto;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    .logo {
+        display: block;
+        margin: 40px auto 0;
+        max-width: 100%;
+    }
+</style>
+
+<h1><span style="color:red">Rapport</span></h1>
+
 <table class="table">
     <tbody>
-    <h1>Rapport </h1>
         <tr>
-            <th>Reference</th>
+            <th>Référence</th>
             <td>{{ rapport.reference }}</td>
         </tr>
         <tr>
-            <th>TitreRapport</th>
+            <th>Titre du rapport</th>
             <td>{{ rapport.titreRapport }}</td>
         </tr>
         <tr>
-            <th>DescriptionProduit</th>
+            <th>Description du produit</th>
             <td>{{ rapport.descriptionProduit }}</td>
         </tr>
         <tr>
-            <th>DateRapport</th>
+            <th>Date du rapport</th>
             <td>{{ rapport.dateRapport ? rapport.dateRapport|date('Y-m-d') : '' }}</td>
         </tr>
         <tr>
             <th>Image</th>
-            <td>{{ rapport.image }}</td>
+            <td><img src="{{ rapport.image }}" alt=""></td>
         </tr>
     </tbody>
 </table>
-
+   <img src="public/assets/img/logoT.png" alt="">
+         

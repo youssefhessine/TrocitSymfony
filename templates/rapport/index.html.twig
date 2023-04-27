@@ -25,7 +25,7 @@
                 <td>{{ rapport.dateRapport ? rapport.dateRapport|date('Y-m-d') : '' }}</td>
                 <td>{{ rapport.image }}</td>
                 <td>
-                    <a href="{{ path('rapport_show', {'reference': rapport.reference}) }}" class="btn btn-primary">Afficher</a>
+                    <a href="{{ path('rapport_show', {'reference': rapport.reference}) }}" class="btn btn-success">Afficher</a>
                     <a href="{{ path('rapport_edit', {'reference': rapport.reference}) }}" class="btn btn-secondary">Modifier</a>
                 </td>
             </tr>
@@ -37,5 +37,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('rapport_new') }}" class="btn btn-primary">Créer un nouveau rapport</a>
+    <a href="{{ path('rapport_new') }}" class="btn btn-success">Créer un nouveau rapport</a>
 {% endblock %}
