@@ -29,4 +29,39 @@
         {% endfor %}
         </tbody>
     </table>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar-holder');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        plugins: [ 'interaction', 'dayGrid', 'timeGrid' ],
+        defaultView: 'dayGridMonth',
+        events: [
+            {% for expertise in expertises %}
+                {
+                    title: '{{ expertise.titre }}',
+                    start: '{{ expertise.date ? expertise.date|date('Y-m-d') : '' }}',
+                    url: '{{ path('expertise_show', {'id': expertise.id}) }}'
+                },
+            {% endfor %}
+        ]
+        
+    });
+    calendar.render();
+});
+</script>
+
+    <div id="calendar-holder"></div>
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.1.0/main.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.1.0/main.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.1.0/main.min.css">
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.1.0/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@4.1.0/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.1.0/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.1.0/main.min.js"></script>
+{% endblock %}
 {% endblock %}
