@@ -139,6 +139,11 @@ class __TwigTemplate_8e483f9da12cb3f5acab6a9ff8d5449a extends Template
             echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("don_edit", ["idDon" => twig_get_attribute($this->env, $this->source, $context["don"], "idDon", [], "any", false, false, false, 31)]), "html", null, true);
             echo "\">
                                     Edit</a>
+                                    <a class=\"btn btn-outline-dark mt-auto\" href=\"";
+            // line 33
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("sendMailToUser", ["email_use" => twig_get_attribute($this->env, $this->source, $context["don"], "nom", [], "any", false, false, false, 33)]), "html", null, true);
+            echo "\">
+                                    send mail</a>
                             </div>
                         </div>
                     </div>
@@ -148,7 +153,7 @@ class __TwigTemplate_8e483f9da12cb3f5acab6a9ff8d5449a extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['don'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 38
+        // line 40
         echo "            </div>
         </div>
     </section>
@@ -173,7 +178,7 @@ class __TwigTemplate_8e483f9da12cb3f5acab6a9ff8d5449a extends Template
 
     public function getDebugInfo()
     {
-        return array (  152 => 38,  139 => 31,  134 => 29,  123 => 23,  118 => 21,  108 => 16,  103 => 13,  99 => 12,  91 => 7,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  157 => 40,  144 => 33,  139 => 31,  134 => 29,  123 => 23,  118 => 21,  108 => 16,  103 => 13,  99 => 12,  91 => 7,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -210,6 +215,8 @@ class __TwigTemplate_8e483f9da12cb3f5acab6a9ff8d5449a extends Template
                                     Show</a>
                                 <a class=\"btn btn-outline-dark mt-auto\" href=\"{{ path('don_edit', {'idDon': don.idDon}) }}\">
                                     Edit</a>
+                                    <a class=\"btn btn-outline-dark mt-auto\" href=\"{{ path('sendMailToUser', {'email_use': don.nom}) }}\">
+                                    send mail</a>
                             </div>
                         </div>
                     </div>

@@ -20,6 +20,7 @@
       <parameter key="MonologBundle">Symfony\Bundle\MonologBundle\MonologBundle</parameter>
       <parameter key="MakerBundle">Symfony\Bundle\MakerBundle\MakerBundle</parameter>
       <parameter key="SensioFrameworkExtraBundle">Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle</parameter>
+      <parameter key="SymfonyCastsVerifyEmailBundle">SymfonyCasts\Bundle\VerifyEmail\SymfonyCastsVerifyEmailBundle</parameter>
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
@@ -65,6 +66,10 @@
       <parameter key="SensioFrameworkExtraBundle" type="collection">
         <parameter key="path">C:\Users\barranihamza\Desktop\don\vendor\sensio\framework-extra-bundle\src</parameter>
         <parameter key="namespace">Sensio\Bundle\FrameworkExtraBundle</parameter>
+      </parameter>
+      <parameter key="SymfonyCastsVerifyEmailBundle" type="collection">
+        <parameter key="path">C:\Users\barranihamza\Desktop\don\vendor\symfonycasts\verify-email-bundle\src</parameter>
+        <parameter key="namespace">SymfonyCasts\Bundle\VerifyEmail</parameter>
       </parameter>
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
@@ -347,6 +352,9 @@
       <tag name="form.type"/>
     </service>
     <service id="App\Form\DonType" class="App\Form\DonType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="App\Form\SendmailType" class="App\Form\SendmailType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
     <service id="argument_metadata_factory" class="Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadataFactory"/>
@@ -1128,6 +1136,7 @@
       <argument type="collection">
         <argument>App\Form\AssociationType</argument>
         <argument>App\Form\DonType</argument>
+        <argument>App\Form\SendmailType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\ChoiceType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FileType</argument>
@@ -1514,6 +1523,12 @@
       <argument type="service" id=".debug.http_client" on-invalid="ignore"/>
       <argument type="service" id="monolog.logger.mailer" on-invalid="ignore"/>
     </service>
+    <service id="mailer.transport_factory.gmail" class="Symfony\Component\Mailer\Bridge\Google\Transport\GmailTransportFactory">
+      <tag name="mailer.transport_factory"/>
+      <argument type="service" id="debug.event_dispatcher"/>
+      <argument type="service" id=".debug.http_client" on-invalid="ignore"/>
+      <argument type="service" id="monolog.logger.mailer" on-invalid="ignore"/>
+    </service>
     <service id="mailer.transport_factory.null" class="Symfony\Component\Mailer\Transport\NullTransportFactory">
       <tag name="mailer.transport_factory"/>
       <argument type="service" id="debug.event_dispatcher"/>
@@ -1593,6 +1608,7 @@
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\validator/Resources/translations\validators.ar.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\form/Resources/translations\validators.ar.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\security-core/Resources/translations\security.ar.xlf</argument>
+            <argument>C:\Users\barranihamza\Desktop\don\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.ar.xlf</argument>
           </argument>
           <argument key="az" type="collection">
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\validator/Resources/translations\validators.az.xlf</argument>
@@ -1618,11 +1634,13 @@
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\validator/Resources/translations\validators.ca.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\form/Resources/translations\validators.ca.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\security-core/Resources/translations\security.ca.xlf</argument>
+            <argument>C:\Users\barranihamza\Desktop\don\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.ca.xlf</argument>
           </argument>
           <argument key="cs" type="collection">
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\validator/Resources/translations\validators.cs.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\form/Resources/translations\validators.cs.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\security-core/Resources/translations\security.cs.xlf</argument>
+            <argument>C:\Users\barranihamza\Desktop\don\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.cs.xlf</argument>
           </argument>
           <argument key="cy" type="collection">
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\validator/Resources/translations\validators.cy.xlf</argument>
@@ -1636,6 +1654,7 @@
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\validator/Resources/translations\validators.de.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\form/Resources/translations\validators.de.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\security-core/Resources/translations\security.de.xlf</argument>
+            <argument>C:\Users\barranihamza\Desktop\don\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.de.xlf</argument>
           </argument>
           <argument key="el" type="collection">
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\validator/Resources/translations\validators.el.xlf</argument>
@@ -1646,11 +1665,13 @@
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\validator/Resources/translations\validators.en.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\form/Resources/translations\validators.en.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\security-core/Resources/translations\security.en.xlf</argument>
+            <argument>C:\Users\barranihamza\Desktop\don\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.en.xlf</argument>
           </argument>
           <argument key="es" type="collection">
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\validator/Resources/translations\validators.es.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\form/Resources/translations\validators.es.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\security-core/Resources/translations\security.es.xlf</argument>
+            <argument>C:\Users\barranihamza\Desktop\don\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.es.xlf</argument>
           </argument>
           <argument key="et" type="collection">
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\validator/Resources/translations\validators.et.xlf</argument>
@@ -1671,11 +1692,13 @@
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\validator/Resources/translations\validators.fi.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\form/Resources/translations\validators.fi.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\security-core/Resources/translations\security.fi.xlf</argument>
+            <argument>C:\Users\barranihamza\Desktop\don\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.fi.xlf</argument>
           </argument>
           <argument key="fr" type="collection">
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\validator/Resources/translations\validators.fr.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\form/Resources/translations\validators.fr.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\security-core/Resources/translations\security.fr.xlf</argument>
+            <argument>C:\Users\barranihamza\Desktop\don\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.fr.xlf</argument>
           </argument>
           <argument key="gl" type="collection">
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\validator/Resources/translations\validators.gl.xlf</argument>
@@ -1696,6 +1719,7 @@
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\validator/Resources/translations\validators.hu.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\form/Resources/translations\validators.hu.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\security-core/Resources/translations\security.hu.xlf</argument>
+            <argument>C:\Users\barranihamza\Desktop\don\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.hu.xlf</argument>
           </argument>
           <argument key="hy" type="collection">
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\validator/Resources/translations\validators.hy.xlf</argument>
@@ -1706,16 +1730,19 @@
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\validator/Resources/translations\validators.id.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\form/Resources/translations\validators.id.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\security-core/Resources/translations\security.id.xlf</argument>
+            <argument>C:\Users\barranihamza\Desktop\don\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.id.xlf</argument>
           </argument>
           <argument key="it" type="collection">
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\validator/Resources/translations\validators.it.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\form/Resources/translations\validators.it.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\security-core/Resources/translations\security.it.xlf</argument>
+            <argument>C:\Users\barranihamza\Desktop\don\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.it.xlf</argument>
           </argument>
           <argument key="ja" type="collection">
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\validator/Resources/translations\validators.ja.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\form/Resources/translations\validators.ja.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\security-core/Resources/translations\security.ja.xlf</argument>
+            <argument>C:\Users\barranihamza\Desktop\don\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.ja.xlf</argument>
           </argument>
           <argument key="lb" type="collection">
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\validator/Resources/translations\validators.lb.xlf</argument>
@@ -1751,6 +1778,7 @@
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\validator/Resources/translations\validators.nl.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\form/Resources/translations\validators.nl.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\security-core/Resources/translations\security.nl.xlf</argument>
+            <argument>C:\Users\barranihamza\Desktop\don\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle+intl-icu.nl.xlf</argument>
           </argument>
           <argument key="nn" type="collection">
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\validator/Resources/translations\validators.nn.xlf</argument>
@@ -1766,11 +1794,13 @@
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\validator/Resources/translations\validators.pl.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\form/Resources/translations\validators.pl.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\security-core/Resources/translations\security.pl.xlf</argument>
+            <argument>C:\Users\barranihamza\Desktop\don\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.pl.xlf</argument>
           </argument>
           <argument key="pt" type="collection">
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\validator/Resources/translations\validators.pt.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\form/Resources/translations\validators.pt.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\security-core/Resources/translations\security.pt.xlf</argument>
+            <argument>C:\Users\barranihamza\Desktop\don\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.pt.xlf</argument>
           </argument>
           <argument key="pt_BR" type="collection">
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\validator/Resources/translations\validators.pt_BR.xlf</argument>
@@ -1781,16 +1811,19 @@
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\validator/Resources/translations\validators.ro.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\form/Resources/translations\validators.ro.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\security-core/Resources/translations\security.ro.xlf</argument>
+            <argument>C:\Users\barranihamza\Desktop\don\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.ro.xlf</argument>
           </argument>
           <argument key="ru" type="collection">
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\validator/Resources/translations\validators.ru.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\form/Resources/translations\validators.ru.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\security-core/Resources/translations\security.ru.xlf</argument>
+            <argument>C:\Users\barranihamza\Desktop\don\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.ru.xlf</argument>
           </argument>
           <argument key="sk" type="collection">
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\validator/Resources/translations\validators.sk.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\form/Resources/translations\validators.sk.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\security-core/Resources/translations\security.sk.xlf</argument>
+            <argument>C:\Users\barranihamza\Desktop\don\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.sk.xlf</argument>
           </argument>
           <argument key="sl" type="collection">
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\validator/Resources/translations\validators.sl.xlf</argument>
@@ -1831,11 +1864,13 @@
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\validator/Resources/translations\validators.tr.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\form/Resources/translations\validators.tr.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\security-core/Resources/translations\security.tr.xlf</argument>
+            <argument>C:\Users\barranihamza\Desktop\don\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.tr.xlf</argument>
           </argument>
           <argument key="uk" type="collection">
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\validator/Resources/translations\validators.uk.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\form/Resources/translations\validators.uk.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\security-core/Resources/translations\security.uk.xlf</argument>
+            <argument>C:\Users\barranihamza\Desktop\don\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.uk.xlf</argument>
           </argument>
           <argument key="ur" type="collection">
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\validator/Resources/translations\validators.ur.xlf</argument>
@@ -1862,11 +1897,15 @@
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\form/Resources/translations\validators.zh_TW.xlf</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\security-core/Resources/translations\security.zh_TW.xlf</argument>
           </argument>
+          <argument key="sr" type="collection">
+            <argument>C:\Users\barranihamza\Desktop\don\vendor\symfonycasts\verify-email-bundle\src/Resources/translations\VerifyEmailBundle.sr.xlf</argument>
+          </argument>
         </argument>
         <argument key="scanned_directories" type="collection">
           <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\validator/Resources/translations</argument>
           <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\form/Resources/translations</argument>
           <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\security-core/Resources/translations</argument>
+          <argument>C:\Users\barranihamza\Desktop\don\vendor\symfonycasts\verify-email-bundle\src/Resources/translations</argument>
           <argument>C:\Users\barranihamza\Desktop\don/translations</argument>
           <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\framework-bundle/translations</argument>
           <argument>C:\Users\barranihamza\Desktop\don\vendor\doctrine\doctrine-bundle/translations</argument>
@@ -1885,6 +1924,7 @@
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\validator/Resources/translations</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\form/Resources/translations</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\security-core/Resources/translations</argument>
+            <argument>C:\Users\barranihamza\Desktop\don\vendor\symfonycasts\verify-email-bundle\src/Resources/translations</argument>
             <argument>translations</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\symfony\framework-bundle/translations</argument>
             <argument>C:\Users\barranihamza\Desktop\don\vendor\doctrine\doctrine-bundle/translations</argument>
@@ -3272,7 +3312,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension">
-      <argument type="service" id=".service_locator.SaHDqMz"/>
+      <argument type="service" id=".service_locator.BEzVs77"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -3448,9 +3488,6 @@
     </service>
     <service id="messenger.senders_locator" class="Symfony\Component\Messenger\Transport\Sender\SendersLocator">
       <argument type="collection">
-        <argument key="Symfony\Component\Mailer\Messenger\SendEmailMessage" type="collection">
-          <argument>async</argument>
-        </argument>
         <argument key="Symfony\Component\Notifier\Message\ChatMessage" type="collection">
           <argument>async</argument>
         </argument>
@@ -6116,6 +6153,21 @@
     <service id="framework_extra_bundle.argument_name_convertor" class="Sensio\Bundle\FrameworkExtraBundle\Request\ArgumentNameConverter">
       <argument type="service" id="argument_metadata_factory"/>
     </service>
+    <service id="symfonycasts.verify_email.token_generator" class="SymfonyCasts\Bundle\VerifyEmail\Generator\VerifyEmailTokenGenerator">
+      <argument>%env(APP_SECRET)%</argument>
+    </service>
+    <service id="symfonycasts.verify_email.query_utility" class="SymfonyCasts\Bundle\VerifyEmail\Util\VerifyEmailQueryUtility"/>
+    <service id="symfonycasts.verify_email.uri_signer" class="Symfony\Component\HttpKernel\UriSigner">
+      <argument>%env(APP_SECRET)%</argument>
+      <argument>signature</argument>
+    </service>
+    <service id="symfonycasts.verify_email.helper" class="SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelper">
+      <argument type="service" id="router.default"/>
+      <argument type="service" id="symfonycasts.verify_email.uri_signer"/>
+      <argument type="service" id="symfonycasts.verify_email.query_utility"/>
+      <argument type="service" id="symfonycasts.verify_email.token_generator"/>
+      <argument>3600</argument>
+    </service>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\AssociationController" class="App\Controller\AssociationController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\AssociationController" class="App\Controller\AssociationController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\AssociationController" class="App\Controller\AssociationController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -6126,6 +6178,8 @@
     <service id=".abstract.instanceof.App\Form\AssociationType" class="App\Form\AssociationType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\DonType" class="App\Form\DonType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\DonType" class="App\Form\DonType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\SendmailType" class="App\Form\SendmailType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\SendmailType" class="App\Form\SendmailType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".service_locator.gSv9zYw" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -6493,7 +6547,13 @@
         <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
       </argument>
     </service>
-    <service id=".service_locator.Ja6WCt." class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.6E9xidT" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="mailer" type="service_closure" id="mailer.mailer"/>
+      </argument>
+    </service>
+    <service id=".service_locator.uP3.fI9" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\AssociationController::delete" type="service_closure" id=".service_locator.6Rd1IoK"/>
@@ -6505,6 +6565,7 @@
         <argument key="App\Controller\DonController::edit" type="service_closure" id=".service_locator.tP_jnyC"/>
         <argument key="App\Controller\DonController::index" type="service_closure" id=".service_locator.aKM6MDa"/>
         <argument key="App\Controller\DonController::new" type="service_closure" id=".service_locator.aKM6MDa"/>
+        <argument key="App\Controller\DonController::sendEmail" type="service_closure" id=".service_locator.6E9xidT"/>
         <argument key="App\Controller\DonController::show" type="service_closure" id=".service_locator.hcYskd1"/>
         <argument key="App\Kernel::loadRoutes" type="service_closure" id=".service_locator.xUrKPVU"/>
         <argument key="App\Kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.xUrKPVU"/>
@@ -6519,6 +6580,7 @@
         <argument key="App\Controller\DonController:edit" type="service_closure" id=".service_locator.tP_jnyC"/>
         <argument key="App\Controller\DonController:index" type="service_closure" id=".service_locator.aKM6MDa"/>
         <argument key="App\Controller\DonController:new" type="service_closure" id=".service_locator.aKM6MDa"/>
+        <argument key="App\Controller\DonController:sendEmail" type="service_closure" id=".service_locator.6E9xidT"/>
         <argument key="App\Controller\DonController:show" type="service_closure" id=".service_locator.hcYskd1"/>
         <argument key="kernel:loadRoutes" type="service_closure" id=".service_locator.xUrKPVU"/>
         <argument key="kernel:registerContainerConfiguration" type="service_closure" id=".service_locator.xUrKPVU"/>
@@ -6583,11 +6645,12 @@
       <argument type="service" id="debug.argument_resolver.not_tagged_controller.inner"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.SaHDqMz" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.BEzVs77" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Form\AssociationType" type="service_closure" id="App\Form\AssociationType"/>
         <argument key="App\Form\DonType" type="service_closure" id="App\Form\DonType"/>
+        <argument key="App\Form\SendmailType" type="service_closure" id="App\Form\SendmailType"/>
         <argument key="Symfony\Bridge\Doctrine\Form\Type\EntityType" type="service_closure" id="form.type.entity"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\ChoiceType" type="service_closure" id="form.type.choice"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\ColorType" type="service_closure" id="form.type.color"/>
@@ -7137,12 +7200,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.Ja6WCt."/>
+      <argument type="service" id=".service_locator.uP3.fI9"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.Ja6WCt."/>
+      <argument type="service" id=".service_locator.uP3.fI9"/>
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -8108,9 +8171,10 @@
     <service id="Psr\Log\LoggerInterface" alias="monolog.logger"/>
     <service id="sensio_framework_extra.converter.doctrine.orm.expression_language" alias="sensio_framework_extra.converter.doctrine.orm.expression_language.default"/>
     <service id="sensio_framework_extra.security.expression_language" alias="sensio_framework_extra.security.expression_language.default"/>
+    <service id="SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface" alias="symfonycasts.verify_email.helper"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.Ja6WCt."/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.uP3.fI9"/>
     <service id="session" alias=".session.do-not-use" public="true">
       <deprecated package="symfony/framework-bundle" version="5.3">The "%alias_id%" service and "SessionInterface" alias are deprecated, use "$requestStack-&gt;getSession()" instead.</deprecated>
     </service>
@@ -8134,9 +8198,9 @@
     <service id=".service_locator.80edgLI" alias="messenger.receiver_locator"/>
     <service id=".service_locator.h8Jkkd2" alias="messenger.retry_strategy_locator"/>
     <service id=".service_locator.0GV1BZZ" alias=".service_locator.gSv9zYw"/>
-    <service id=".service_locator.A8VTz24" alias=".service_locator.Ja6WCt."/>
+    <service id=".service_locator.vXJo1nE" alias=".service_locator.uP3.fI9"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
-    <service id=".service_locator.RNuFsAX" alias=".service_locator.SaHDqMz"/>
+    <service id=".service_locator.K6BPxcD" alias=".service_locator.BEzVs77"/>
     <service id=".service_locator.nk0lT0X" alias=".service_locator.1kmbKC8"/>
     <service id=".service_locator.O24_MAy" alias=".service_locator.yY.p4P7"/>
     <service id=".service_locator.0ghLsew" alias=".service_locator.mx0UMmY"/>
@@ -8167,6 +8231,7 @@
     <service id=".service_locator.p8q46sN" alias=".service_locator.6Rd1IoK"/>
     <service id=".service_locator.CnUkJo6" alias=".service_locator.hcYskd1"/>
     <service id=".service_locator.ixCDlIp" alias=".service_locator.tP_jnyC"/>
+    <service id=".service_locator.k3yKEdo" alias=".service_locator.6E9xidT"/>
     <service id=".service_locator.A740LBW" alias=".service_locator.mx0UMmY"/>
     <service id=".service_locator.L0rFhJm" alias=".service_locator.GVyCdgr"/>
     <service id=".service_locator.pFwChgS" alias=".service_locator.UkE3SaZ"/>

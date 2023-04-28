@@ -634,7 +634,7 @@ class __TwigTemplate_2fbf557a760d1626c5a72df1ef020f2f extends Template
         // line 537
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/vendor/php-email-form/validate.js"), "html", null, true);
         echo "\"></script>
-
+<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js\"></script>
 <!-- Template Main JS File -->
 <script src=\"";
         // line 540
@@ -1226,7 +1226,7 @@ class __TwigTemplate_2fbf557a760d1626c5a72df1ef020f2f extends Template
 <script src=\"{{ asset(\"assets/vendor/simple-datatables/simple-datatables.js\") }}\" ></script>
 <script src=\"{{ asset(\"assets/vendor/tinymce/tinymce.min.js\") }}\" ></script>
 <script src=\"{{ asset(\"assets/vendor/php-email-form/validate.js\") }}\"></script>
-
+<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js\"></script>
 <!-- Template Main JS File -->
 <script src=\"{{ asset(\"assets/js/main.js\") }}\" ></script>
 

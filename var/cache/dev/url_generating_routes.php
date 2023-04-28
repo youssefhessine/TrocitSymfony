@@ -13,6 +13,7 @@ return [
     'don_show' => [['idDon'], ['_controller' => 'App\\Controller\\DonController::show'], [], [['variable', '/', '[^/]++', 'idDon', true], ['text', '/don']], [], [], []],
     'don_edit' => [['idDon'], ['_controller' => 'App\\Controller\\DonController::edit'], [], [['text', '/edit'], ['variable', '/', '[^/]++', 'idDon', true], ['text', '/don']], [], [], []],
     'don_delete' => [['idDon'], ['_controller' => 'App\\Controller\\DonController::delete'], [], [['variable', '/', '[^/]++', 'idDon', true], ['text', '/don']], [], [], []],
+    'sendMailToUser' => [['email_use'], ['_controller' => 'App\\Controller\\DonController::sendEmail'], [], [['variable', '/', '[^/]++', 'email_use', true], ['text', '/don/email']], [], [], []],
     '_preview_error' => [['code', '_format'], ['_controller' => 'error_controller::preview', '_format' => 'html'], ['code' => '\\d+'], [['variable', '.', '[^/]++', '_format', true], ['variable', '/', '\\d+', 'code', true], ['text', '/_error']], [], [], []],
     '_wdt' => [['token'], ['_controller' => 'web_profiler.controller.profiler::toolbarAction'], [], [['variable', '/', '[^/]++', 'token', true], ['text', '/_wdt']], [], [], []],
     '_profiler_home' => [[], ['_controller' => 'web_profiler.controller.profiler::homeAction'], [], [['text', '/_profiler/']], [], [], []],

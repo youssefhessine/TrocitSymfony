@@ -25,24 +25,27 @@ return [
                     .'|/edit(*:43)'
                     .'|(*:50)'
                 .')'
-                .'|/don/([^/]++)(?'
-                    .'|(*:74)'
-                    .'|/edit(*:86)'
-                    .'|(*:93)'
+                .'|/don/(?'
+                    .'|([^/]++)(?'
+                        .'|(*:77)'
+                        .'|/edit(*:89)'
+                        .'|(*:96)'
+                    .')'
+                    .'|email/([^/]++)(*:118)'
                 .')'
                 .'|/_(?'
-                    .'|error/(\\d+)(?:\\.([^/]++))?(*:132)'
-                    .'|wdt/([^/]++)(*:152)'
+                    .'|error/(\\d+)(?:\\.([^/]++))?(*:158)'
+                    .'|wdt/([^/]++)(*:178)'
                     .'|profiler/([^/]++)(?'
                         .'|/(?'
-                            .'|search/results(*:198)'
-                            .'|router(*:212)'
+                            .'|search/results(*:224)'
+                            .'|router(*:238)'
                             .'|exception(?'
-                                .'|(*:232)'
-                                .'|\\.css(*:245)'
+                                .'|(*:258)'
+                                .'|\\.css(*:271)'
                             .')'
                         .')'
-                        .'|(*:255)'
+                        .'|(*:281)'
                     .')'
                 .')'
             .')/?$}sDu',
@@ -51,16 +54,17 @@ return [
         31 => [[['_route' => 'association_show', '_controller' => 'App\\Controller\\AssociationController::show'], ['id'], ['GET' => 0], null, false, true, null]],
         43 => [[['_route' => 'association_edit', '_controller' => 'App\\Controller\\AssociationController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
         50 => [[['_route' => 'app_association_delete', '_controller' => 'App\\Controller\\AssociationController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        74 => [[['_route' => 'don_show', '_controller' => 'App\\Controller\\DonController::show'], ['idDon'], ['GET' => 0], null, false, true, null]],
-        86 => [[['_route' => 'don_edit', '_controller' => 'App\\Controller\\DonController::edit'], ['idDon'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        93 => [[['_route' => 'don_delete', '_controller' => 'App\\Controller\\DonController::delete'], ['idDon'], ['POST' => 0], null, false, true, null]],
-        132 => [[['_route' => '_preview_error', '_controller' => 'error_controller::preview', '_format' => 'html'], ['code', '_format'], null, null, false, true, null]],
-        152 => [[['_route' => '_wdt', '_controller' => 'web_profiler.controller.profiler::toolbarAction'], ['token'], null, null, false, true, null]],
-        198 => [[['_route' => '_profiler_search_results', '_controller' => 'web_profiler.controller.profiler::searchResultsAction'], ['token'], null, null, false, false, null]],
-        212 => [[['_route' => '_profiler_router', '_controller' => 'web_profiler.controller.router::panelAction'], ['token'], null, null, false, false, null]],
-        232 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
-        245 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
-        255 => [
+        77 => [[['_route' => 'don_show', '_controller' => 'App\\Controller\\DonController::show'], ['idDon'], ['GET' => 0], null, false, true, null]],
+        89 => [[['_route' => 'don_edit', '_controller' => 'App\\Controller\\DonController::edit'], ['idDon'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        96 => [[['_route' => 'don_delete', '_controller' => 'App\\Controller\\DonController::delete'], ['idDon'], ['POST' => 0], null, false, true, null]],
+        118 => [[['_route' => 'sendMailToUser', '_controller' => 'App\\Controller\\DonController::sendEmail'], ['email_use'], null, null, false, true, null]],
+        158 => [[['_route' => '_preview_error', '_controller' => 'error_controller::preview', '_format' => 'html'], ['code', '_format'], null, null, false, true, null]],
+        178 => [[['_route' => '_wdt', '_controller' => 'web_profiler.controller.profiler::toolbarAction'], ['token'], null, null, false, true, null]],
+        224 => [[['_route' => '_profiler_search_results', '_controller' => 'web_profiler.controller.profiler::searchResultsAction'], ['token'], null, null, false, false, null]],
+        238 => [[['_route' => '_profiler_router', '_controller' => 'web_profiler.controller.router::panelAction'], ['token'], null, null, false, false, null]],
+        258 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
+        271 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
+        281 => [
             [['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
