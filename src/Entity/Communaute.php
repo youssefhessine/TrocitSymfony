@@ -2,32 +2,66 @@
 
 namespace App\Entity;
 
-use App\Repository\CommunauteRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
-#[ORM\Entity(repositoryClass: CommunauteRepository::class)]
+
+/**
+ * Communaute
+ *
+ * @ORM\Table(name="communaute")
+ * @ORM\Entity
+ */
 class Communaute
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    /**
+     * @var int
+     *@Groups({"groups", "Communaute"})
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+    /**
+    * @Assert\NotBlank(message=" nom  est obligatoire")
+     * @Assert\Type(type="string")
+     * @var string
+     *@Groups({"groups", "Communaute"})
+     * @ORM\Column(name="nom", type="string", length=255, nullable=false)
+     */
+    private $nom;
 
-    #[ORM\Column(length: 254)]
-    private ?string $Nom = null;
+    /**
+    * @Assert\NotBlank(message=" adresse  est obligatoire")
+     * @Assert\Type(type="string")
+     * @var string
+     *@Groups({"groups", "Communaute"})
+     * @ORM\Column(name="adresse", type="string", length=255, nullable=false)
+     */
+    private $adresse;
 
-    #[ORM\Column(length: 254)]
-    private ?string $Description = null;
+    /**
+     * @Assert\NotBlank(message=" email  est obligatoire")
+     * @Assert\Type(type="string") 
+     * @Assert\Regex(
+     *     pattern="/^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/",
+     *     message="not_valid_email"
+     * )
+     * @var string
+     *@Groups({"groups", "Communaute"})
+     * @ORM\Column(name="email", type="string", length=255, nullable=false)
+     */
+    private $email;
 
-    #[ORM\Column(length: 254)]
-    private ?string $Type = null;
-
-    #[ORM\Column(length: 254)]
-    private ?string $Location = null;
-
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $Date = null;
+    /**
+    * @Assert\NotBlank(message=" num_tel  est obligatoire")
+     * @Assert\Type(type="integer") 
+     * @var int
+     *@Groups({"groups", "Communaute"})
+     * @ORM\Column(name="num_tel", type="integer", nullable=false)
+     */
+    private $numTel;
 
     public function getId(): ?int
     {
@@ -36,61 +70,54 @@ class Communaute
 
     public function getNom(): ?string
     {
-        return $this->Nom;
+        return $this->nom;
     }
 
-    public function setNom(string $Nom): self
+    public function setNom(string $nom): self
     {
-        $this->Nom = $Nom;
+        $this->nom = $nom;
 
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getAdresse(): ?string
     {
-        return $this->Description;
+        return $this->adresse;
     }
 
-    public function setDescription(string $Description): self
+    public function setAdresse(string $adresse): self
     {
-        $this->Description = $Description;
+        $this->adresse = $adresse;
 
         return $this;
     }
 
-    public function getType(): ?string
+    public function getEmail(): ?string
     {
-        return $this->Type;
+        return $this->email;
     }
 
-    public function setType(string $Type): self
+    public function setEmail(string $email): self
     {
-        $this->Type = $Type;
+        $this->email = $email;
 
         return $this;
     }
 
-    public function getLocation(): ?string
+    public function getNumTel(): ?int
     {
-        return $this->Location;
+        return $this->numTel;
     }
-
-    public function setLocation(string $Location): self
+    public function getnum_tel(): ?int
     {
-        $this->Location = $Location;
+        return $this->numTel;
+    }
+    public function setNumTel(int $numTel): self
+    {
+        $this->numTel = $numTel;
 
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
-    {
-        return $this->Date;
-    }
 
-    public function setDate(\DateTimeInterface $Date): self
-    {
-        $this->Date = $Date;
-
-        return $this;
-    }
 }

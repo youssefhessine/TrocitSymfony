@@ -1,95 +1,151 @@
 <?php
 
 namespace App\Entity;
-
-use App\Repository\ClubRepository;
+use Doctrine\DBAL\Types\type;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
-
-#[ORM\Entity(repositoryClass: ClubRepository::class)]
+use App\Entity\Communaute;
+use Symfony\Component\Validator\Constraints as Assert;
+/**
+ * Club
+ *
+ * @ORM\Table(name="club", indexes={@ORM\Index(name="fk6", columns={"id_communaute_id"})})
+ * @ORM\Entity
+ */
 class Club
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    /**
+     * @var int
+     *@Groups({"groups", "Club"})
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
 
-    #[ORM\Column(length: 254)]
-    private ?string $Club_name = null;
+    /**
+     
+    * @Assert\NotBlank(message=" nomPub  est obligatoire")
+     * @Assert\Type(type="string")
+     * @var string
+     *@Groups({"groups", "Club"})
+     * @ORM\Column(name="nom_pub", type="string", length=255, nullable=false)
+     */
+    private $nomPub;
 
-    #[ORM\Column(length: 254)]
-    private ?string $Manager_name = null;
+    /**
+    * @Assert\NotBlank(message=" description est obligatoire")
+     * @Assert\Length(
+     *      min = 8,
+     *      minMessage=" Entrer un Description au mini de 8 caracteres")
+     *@Groups("Clubs")
+     *     
+     * @var string
+     *@Groups({"groups", "Club"})
+     * @ORM\Column(name="description", type="string", length=255, nullable=false)
+     */
+    private $description;
 
-    #[ORM\Column]
-    private ?int $Capacity = null;
+    /**
+     * @Assert\NotBlank(message=" image  est obligatoire")
+     * @Assert\Type(type="string")
+     * @var string
+     *@Groups({"groups", "Club"})
+     * @ORM\Column(name="image", type="string", length=255, nullable=false)
+     * 
+     */
+    private $image;
 
-    #[ORM\Column(length: 254)]
-    private ?string $Location = null;
+    /**
+     * @var \Communaute
+     *
+     * @ORM\ManyToOne(targetEntity=Communaute::class)
+     * @ORM\JoinColumn(nullable=false)
+     * })
+     * 
+     */
 
-    #[ORM\Column]
-    private ?int $Id_communaute = null;
+    private $idCommunaute;
+
+
+         /**
+     * @var int
+     *
+     *@Groups({"groups", "Club"})
+     */
+    private $ide;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getClubName(): ?string
+    public function getIde(): ?int
     {
-        return $this->Club_name;
+        return $this->getIdCommunaute->getId();
     }
 
-    public function setClubName(string $Club_name): self
+
+    public function setId(string $id): self
     {
-        $this->Club_name = $Club_name;
+        $this->id = $id;
 
         return $this;
     }
 
-    public function getManagerName(): ?string
+    public function getNomPub(): ?string
     {
-        return $this->Manager_name;
+        return $this->nomPub;
     }
 
-    public function setManagerName(string $Manager_name): self
+    public function nom_pub(): ?string
     {
-        $this->Manager_name = $Manager_name;
+        return $this->nomPub;
+    }
+
+
+    public function setNomPub(string $nomPub): self
+    {
+        $this->nomPub = $nomPub;
 
         return $this;
     }
 
-    public function getCapacity(): ?int
+    public function getDescription(): ?string
     {
-        return $this->Capacity;
+        return $this->description;
     }
 
-    public function setCapacity(int $Capacity): self
+    public function setDescription(string $description): self
     {
-        $this->Capacity = $Capacity;
+        $this->description = $description;
 
         return $this;
     }
 
-    public function getLocation(): ?string
+    public function getImage(): ?string
     {
-        return $this->Location;
+        return $this->image;
     }
 
-    public function setLocation(string $Location): self
+    public function setImage(string $image): self
     {
-        $this->Location = $Location;
+        $this->image = $image;
 
         return $this;
     }
 
-    public function getIdCommunaute(): ?int
+    public function getIdCommunaute(): ?Communaute
     {
-        return $this->Id_communaute;
+        return $this->idCommunaute;
     }
 
-    public function setIdCommunaute(int $Id_communaute): self
+    public function setIdCommunaute(?Communaute $idCommunaute): self
     {
-        $this->Id_communaute = $Id_communaute;
+        $this->idCommunaute = $idCommunaute;
 
         return $this;
     }
+
+
 }

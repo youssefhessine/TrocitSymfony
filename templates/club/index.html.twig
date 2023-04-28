@@ -1,0 +1,47 @@
+{% extends 'baseback.html.twig' %}
+
+ {% block body %}
+
+            <!-- Quick Action Toolbar Starts-->
+          
+            <!-- Quick Action Toolbar Ends-->
+        
+          <!-- content-wrapper ends -->
+          <!-- partial:partials/_footer.html -->
+        
+<div class="table-responsive" >
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">nom_pub</th>
+   
+      <th scope="col">description</th>
+
+        <th scope="col">image</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for club in b %}
+    <tr>
+     
+    <td> {{ club.id }}</td> 
+     <td> {{ club.nom_pub}} </td>  
+        <td>{{  club.description}} </td> 
+         <td>    <img src="uploads/{{  club.image }}" height="100" width="100">  </td> 
+         
+             <td> 
+          <a href="{{path('modifierpublicite',{'id':club.id}) }}">modifier </a>
+               <a href="{{path('deletePublicite',{'id':club.id}) }}">supprimer </a>
+             
+              </td> 
+    </tr>
+  
+      {% endfor %}
+
+  </tbody>
+</table>
+</div>
+
+</body>
+{% endblock %}
