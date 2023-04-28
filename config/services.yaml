@@ -6,6 +6,16 @@
 parameters:
     offres_directory: '%kernel.project_dir%/public/uploads/'
 services:
+    app.open_weather_map:
+        class: Cmfcmf\OpenWeatherMap\OpenWeatherMap
+        arguments:
+            - '%env(ddeca3749516a7c56479e1431fc65fb6)%' # Replace with your OpenWeatherMap API key
+            - 'en' # Replace with the desired language code
+            - 'metric' # Replace with the desired unit system (metric or imperial)
+
+    App\Controller\WeatherController:
+        arguments:
+            $openWeatherMap: '@app.open_weather_map'
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.

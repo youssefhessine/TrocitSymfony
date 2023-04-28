@@ -38,6 +38,19 @@ class LivraisonController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $livraisonRepository->save($livraison, true);
 
+            $basic  = new \Vonage\Client\Credentials\Basic("85973784", "Y7JeqkaW3LyNrZjm");
+            $client = new \Vonage\Client($basic);
+            $response = $client->sms()->send(
+                new \Vonage\SMS\Message\SMS("21696458508","TROCIT", 'Votre livraison est faite avec succcess')
+            );
+            
+            $message = $response->current();
+            
+            if ($message->getStatus() == 0) {
+                echo "The message was sent successfully\n";
+            } else {
+                echo "The message failed with status: " . $message->getStatus() . "\n";
+            }
             return $this->redirectToRoute('app_livraison_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -82,4 +95,6 @@ class LivraisonController extends AbstractController
 
         return $this->redirectToRoute('app_livraison_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    
 }

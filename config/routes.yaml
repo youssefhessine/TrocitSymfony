@@ -1,3 +1,9 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+livreurs_stats:
+    path: /livreurs-stats
+    controller: App\Controller\LivreurController::livreurStats
+weather:
+    path: '/weather/{location}'
+    controller: App\Controller\WeatherController::index

@@ -44,4 +44,18 @@
     </table>
 
                     <button type="button" onclick="window.location.href='{{ path('app_troc_new') }}'" style="background-color: #FF5500; color: white; padding: 10px 20px; border: none; cursor: pointer;">Ajouter</button>
+
+ <style>
+  .navigation {
+    float: right;
+  }
+</style>
+
+<div class="navigation">
+  {{ knp_pagination_render(trocs) }}
+</div>
+
+
+  
+    
 {% endblock %}

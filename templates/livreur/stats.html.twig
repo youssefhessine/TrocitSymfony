@@ -1,0 +1,39 @@
+{# templates/livreur/stats.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<br>
+<br>
+
+<br>
+
+    <h1>Statistiques des livreurs</h1> 
+    <img src="{{ asset('assets/img/livraison.png') }}" alt="Image de livraison" width="200">
+
+<br>
+<br>
+<br>
+
+<p style="text-align:center; font-size:24px; ">Le livreur ayant effectué le plus de livraisons est : <span style="color:red;">{{ livreurMaxLivraisons }}</span></p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Livreur</th>
+                <th>Nombre de livraisons</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for livreur, stats in livreurStats %}
+                <tr>
+                    <td>{{ livreur }}</td>
+                    <td>{{ stats }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h1 style="text-align:center; font-size:24px;">Donnez Lui sa recompense</h1> 
+    <img src="{{ asset('assets/img/recompense.png') }}" alt="Image de recompense" width="200" onclick="alert('C est Bon ! 50 jetons sont ajoutées au portefeuille du livreur')">
+
+{% endblock %}

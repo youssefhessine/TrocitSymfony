@@ -1,0 +1,23 @@
+
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}New Troc{% endblock %}
+
+
+{% block body %}
+<br>
+<br>
+<br>
+    <h1>Create new Troc</h1>
+
+    {{ include('troc/_form.html.twig') }}
+    <br>
+<button type="button" onclick="window.location.href='{{ path('app_troc_index') }}'" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer;">Retour</button>
+<br>
+<script>
+function closeWindow() {
+    window.close();
+}
+</script>
+
+{% endblock %}

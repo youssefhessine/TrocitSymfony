@@ -1,0 +1,6 @@
+
+{% block body %}
+    <h1>Weather for {{ weather.city->getName() }}</h1>
+    <p>Temperature: {{ weather.temperature->getValue() }} {{ weather.temperature->getUnit() }}</p>
+    <p>Weather: {{ weather.weather->description }}</p>
+{% endblock %}

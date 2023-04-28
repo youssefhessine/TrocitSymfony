@@ -9,6 +9,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Joli\JoliNotif\Notification;
+use Joli\JoliNotif\NotifierFactory;
+use Knp\Component\Pager\PaginatorInterface; // Nous appelons le bundle KNP Paginator
+ 
 
 #[Route('/troc')]
 class TrocController extends AbstractController
@@ -22,10 +26,17 @@ class TrocController extends AbstractController
     }
 
     #[Route('/', name: 'app_troc_index', methods: ['GET'])]
-    public function index(TrocRepository $trocRepository): Response
-    {
+    public function index(TrocRepository $trocRepository , Request $request , PaginatorInterface $paginator): Response
+    { 
+                { $troc = $trocRepository->findAll();
+                 $troc = $paginator->paginate(
+                    $troc,
+                    $request->query->getInt('page',1),6
+                 );}
+                 
         return $this->render('troc/index.html.twig', [
-            'trocs' => $trocRepository->findAll(),
+            'trocs' => $troc,
+            
         ]);
     }
 
@@ -38,6 +49,19 @@ class TrocController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $trocRepository->save($troc, true);
+            // Create a Notifier
+$notifier = NotifierFactory::create();
+
+// Create your notification
+$notification =
+    (new Notification())
+    ->setTitle('Troc Ajouté')
+    ->setBody('Votre demande de troc est ajouté avec success')
+    
+;
+
+// Send it
+$notifier->send($notification);
 
             return $this->redirectToRoute('app_troc_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -48,6 +72,37 @@ class TrocController extends AbstractController
         ]);
     }
 
+
+    #[Route('/newtroc', name: 'app_troc_newtroc', methods: ['GET', 'POST'])]
+    public function newtroc(Request $request, TrocRepository $trocRepository): Response
+    {
+        $troc = new Troc();
+        $form = $this->createForm(TrocType::class, $troc);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $trocRepository->save($troc, true);
+            // Create a Notifier
+$notifier = NotifierFactory::create();
+
+// Create your notification
+$notification =
+    (new Notification())
+    ->setTitle('Troc Ajouté')
+    ->setBody('Votre demande de troc est ajouté avec success')
+    
+;
+
+// Send it
+$notifier->send($notification);
+echo '<script>closeWindow();</script>';
+        }
+
+        return $this->renderForm('troc/new.html copy.twig', [
+            'troc' => $troc,
+            'form' => $form,
+        ]);
+    }
     #[Route('/{idTroc}', name: 'app_troc_show', methods: ['GET'])]
     public function show(Troc $troc): Response
     {

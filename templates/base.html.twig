@@ -47,11 +47,12 @@
             <header id="header" class="header fixed-top d-flex align-items-center">
 
                 <div class="d-flex align-items-center justify-content-between">
-                    <a href="{{ path('display_admin') }}" class="logo d-flex align-items-center">
-                        <img src="public/assets/img/logo.png" alt="">
-                        <span class="d-none d-lg-block">TROCIT</span>
-                    </a>
+<a href="{{ path('app_troc_index') }}">
+    <img src="assets/img/logo.png" width="100">
+</a>
+
                     <i class="bi bi-list toggle-sidebar-btn"></i>
+                    
                 </div><!-- End Logo -->
 
                 <div class="search-bar">
@@ -319,6 +320,13 @@
                             <span>Gestion communuate</span>
                         </a>
                     </li><!-- End Error 404 Page Nav -->
+
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="/livreurs-stats">
+                            <i class="bi bi-dash-circle"></i>
+                            <span>Statistiques de Livraison</span>
+                        </a>
+                    </li>
 
                     
 
