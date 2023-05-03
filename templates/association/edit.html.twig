@@ -7,7 +7,7 @@
 
     {{ include('association/form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('association_index') }}">back to list</a>
+      <a class="btn btn-outline-dark mt-auto" href="{{ path('association_index') }}">back to list</a>
 
     {{ include('association/delete.html.twig') }}
 {% endblock %}

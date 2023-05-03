@@ -36,6 +36,15 @@ class DonController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+           /** @var UploadedFile $file */
+           $file = $form->get('image')->getData();
+           $filename=md5(uniqid()).'.'.$file->guessExtension();
+           $file->move(
+            $this->getParameter('Images_directory'),
+            $filename
+            
+        );
+            $don->setImage($filename);
             $entityManager->persist($don);
             $entityManager->flush();
 

@@ -89,7 +89,7 @@ class __TwigTemplate_74d496c53f312a2787c9e0bc8927080f extends Template
     <section class=\"py-5\">
         <div class=\"container px-4 px-lg-5 my-5\">
             <div class=\"row gx-4 gx-lg-5 align-items-center\">
-                <div class=\"col-md-6\"><img class=\"card-img-top mb-5 mb-md-0\" src=\"";
+                <div class=\"col-md-6\"><img class=\"card-img-top mb-5 mb-md-0\" src=\"../uploads/";
         // line 10
         echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["don"]) || array_key_exists("don", $context) ? $context["don"] : (function () { throw new RuntimeError('Variable "don" does not exist.', 10, $this->source); })()), "image", [], "any", false, false, false, 10), "html", null, true);
         echo "\" alt=\"...\" /></div>
@@ -168,7 +168,7 @@ class __TwigTemplate_74d496c53f312a2787c9e0bc8927080f extends Template
     <section class=\"py-5\">
         <div class=\"container px-4 px-lg-5 my-5\">
             <div class=\"row gx-4 gx-lg-5 align-items-center\">
-                <div class=\"col-md-6\"><img class=\"card-img-top mb-5 mb-md-0\" src=\"{{ don.image }}\" alt=\"...\" /></div>
+                <div class=\"col-md-6\"><img class=\"card-img-top mb-5 mb-md-0\" src=\"../uploads/{{ don.image }}\" alt=\"...\" /></div>
                 <div class=\"col-md-6\">
                     <div class=\"small mb-1\">Jeton: {{ don.jeton }}</div>
                     <h1 class=\"display-5 fw-bolder\">{{ don.produit }}</h1>
@@ -189,6 +189,6 @@ class __TwigTemplate_74d496c53f312a2787c9e0bc8927080f extends Template
         </div>
     </section>
 {% endblock %}
-", "don/show.html.twig", "C:\\Users\\barranihamza\\Desktop\\don\\templates\\don\\show.html.twig");
+", "don/show.html.twig", "C:\\Users\\barranihamza\\Desktop\\TrocitSymfony\\templates\\don\\show.html.twig");
     }
 }

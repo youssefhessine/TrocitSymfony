@@ -3,7 +3,28 @@
 {% block title %}Association index{% endblock %}
 
 {% block body %}
-    <h1>Association index</h1>
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Gestion Association </h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+      </nav>
+         <a  class="btn btn-outline-dark mt-auto" href="{{path('association_new')}}">Ajouter nouveau</a>
+           <center> <h3>les Association</h3></center>
+
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+      <div class="row">
+
+
+         <section class="py-12">
+         <div class="container px-12 px-lg-12 mt-12">
+         <div class="row gx-12 gx-lg-12 row-cols-12 row-cols-md-12 row-cols-xl-12 justify-content-center">
 
     <table class="table">
         <thead>
@@ -39,5 +60,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('association_new') }}">Create new</a>
+    
 {% endblock %}

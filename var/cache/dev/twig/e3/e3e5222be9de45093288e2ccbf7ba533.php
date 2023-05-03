@@ -85,7 +85,31 @@ class __TwigTemplate_27e48facff048bcc3ec9133653c6ed7e extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 6
-        echo "    <h1>Association index</h1>
+        echo "<main id=\"main\" class=\"main\">
+
+    <div class=\"pagetitle\">
+      <h1>Gestion Association </h1>
+      <nav>
+        <ol class=\"breadcrumb\">
+          <li class=\"breadcrumb-item\"><a href=\"index.html\">Home</a></li>
+          <li class=\"breadcrumb-item active\">Dashboard</li>
+        </ol>
+      </nav>
+         <a  class=\"btn btn-outline-dark mt-auto\" href=\"";
+        // line 16
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("association_new");
+        echo "\">Ajouter nouveau</a>
+           <center> <h3>les Association</h3></center>
+
+    </div><!-- End Page Title -->
+
+    <section class=\"section dashboard\">
+      <div class=\"row\">
+
+
+         <section class=\"py-12\">
+         <div class=\"container px-12 px-lg-12 mt-12\">
+         <div class=\"row gx-12 gx-lg-12 row-cols-12 row-cols-md-12 row-cols-xl-12 justify-content-center\">
 
     <table class=\"table\">
         <thead>
@@ -101,45 +125,45 @@ class __TwigTemplate_27e48facff048bcc3ec9133653c6ed7e extends Template
         </thead>
         <tbody>
         ";
-        // line 21
+        // line 42
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["associations"]) || array_key_exists("associations", $context) ? $context["associations"] : (function () { throw new RuntimeError('Variable "associations" does not exist.', 21, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["associations"]) || array_key_exists("associations", $context) ? $context["associations"] : (function () { throw new RuntimeError('Variable "associations" does not exist.', 42, $this->source); })()));
         $context['_iterated'] = false;
         foreach ($context['_seq'] as $context["_key"] => $context["association"]) {
-            // line 22
+            // line 43
             echo "            <tr>
                 <td>";
-            // line 23
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["association"], "id", [], "any", false, false, false, 23), "html", null, true);
+            // line 44
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["association"], "id", [], "any", false, false, false, 44), "html", null, true);
             echo "</td>
                 <td>";
-            // line 24
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["association"], "nom", [], "any", false, false, false, 24), "html", null, true);
+            // line 45
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["association"], "nom", [], "any", false, false, false, 45), "html", null, true);
             echo "</td>
                 <td>";
-            // line 25
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["association"], "image", [], "any", false, false, false, 25), "html", null, true);
+            // line 46
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["association"], "image", [], "any", false, false, false, 46), "html", null, true);
             echo "</td>
                 <td>";
-            // line 26
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["association"], "adresse", [], "any", false, false, false, 26), "html", null, true);
+            // line 47
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["association"], "adresse", [], "any", false, false, false, 47), "html", null, true);
             echo "</td>
                 <td>";
-            // line 27
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["association"], "metier", [], "any", false, false, false, 27), "html", null, true);
+            // line 48
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["association"], "metier", [], "any", false, false, false, 48), "html", null, true);
             echo "</td>
                 <td>";
-            // line 28
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["association"], "responsable", [], "any", false, false, false, 28), "html", null, true);
+            // line 49
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["association"], "responsable", [], "any", false, false, false, 49), "html", null, true);
             echo "</td>
                 <td>
                     <a href=\"";
-            // line 30
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("association_show", ["id" => twig_get_attribute($this->env, $this->source, $context["association"], "id", [], "any", false, false, false, 30)]), "html", null, true);
+            // line 51
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("association_show", ["id" => twig_get_attribute($this->env, $this->source, $context["association"], "id", [], "any", false, false, false, 51)]), "html", null, true);
             echo "\">show</a>
                     <a href=\"";
-            // line 31
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("association_edit", ["id" => twig_get_attribute($this->env, $this->source, $context["association"], "id", [], "any", false, false, false, 31)]), "html", null, true);
+            // line 52
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("association_edit", ["id" => twig_get_attribute($this->env, $this->source, $context["association"], "id", [], "any", false, false, false, 52)]), "html", null, true);
             echo "\">edit</a>
                 </td>
             </tr>
@@ -147,7 +171,7 @@ class __TwigTemplate_27e48facff048bcc3ec9133653c6ed7e extends Template
             $context['_iterated'] = true;
         }
         if (!$context['_iterated']) {
-            // line 35
+            // line 56
             echo "            <tr>
                 <td colspan=\"7\">no records found</td>
             </tr>
@@ -156,14 +180,11 @@ class __TwigTemplate_27e48facff048bcc3ec9133653c6ed7e extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['association'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 39
+        // line 60
         echo "        </tbody>
     </table>
 
-    <a href=\"";
-        // line 42
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("association_new");
-        echo "\">Create new</a>
+    
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -185,7 +206,7 @@ class __TwigTemplate_27e48facff048bcc3ec9133653c6ed7e extends Template
 
     public function getDebugInfo()
     {
-        return array (  165 => 42,  160 => 39,  151 => 35,  142 => 31,  138 => 30,  133 => 28,  129 => 27,  125 => 26,  121 => 25,  117 => 24,  113 => 23,  110 => 22,  105 => 21,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  184 => 60,  175 => 56,  166 => 52,  162 => 51,  157 => 49,  153 => 48,  149 => 47,  145 => 46,  141 => 45,  137 => 44,  134 => 43,  129 => 42,  100 => 16,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -195,7 +216,28 @@ class __TwigTemplate_27e48facff048bcc3ec9133653c6ed7e extends Template
 {% block title %}Association index{% endblock %}
 
 {% block body %}
-    <h1>Association index</h1>
+<main id=\"main\" class=\"main\">
+
+    <div class=\"pagetitle\">
+      <h1>Gestion Association </h1>
+      <nav>
+        <ol class=\"breadcrumb\">
+          <li class=\"breadcrumb-item\"><a href=\"index.html\">Home</a></li>
+          <li class=\"breadcrumb-item active\">Dashboard</li>
+        </ol>
+      </nav>
+         <a  class=\"btn btn-outline-dark mt-auto\" href=\"{{path('association_new')}}\">Ajouter nouveau</a>
+           <center> <h3>les Association</h3></center>
+
+    </div><!-- End Page Title -->
+
+    <section class=\"section dashboard\">
+      <div class=\"row\">
+
+
+         <section class=\"py-12\">
+         <div class=\"container px-12 px-lg-12 mt-12\">
+         <div class=\"row gx-12 gx-lg-12 row-cols-12 row-cols-md-12 row-cols-xl-12 justify-content-center\">
 
     <table class=\"table\">
         <thead>
@@ -231,8 +273,8 @@ class __TwigTemplate_27e48facff048bcc3ec9133653c6ed7e extends Template
         </tbody>
     </table>
 
-    <a href=\"{{ path('association_new') }}\">Create new</a>
+    
 {% endblock %}
-", "association/index.html.twig", "C:\\Users\\barranihamza\\Desktop\\don\\templates\\association\\index.html.twig");
+", "association/index.html.twig", "C:\\Users\\barranihamza\\Desktop\\TrocitSymfony\\templates\\association\\index.html.twig");
     }
 }
