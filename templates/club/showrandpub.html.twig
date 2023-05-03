@@ -70,7 +70,7 @@ something.onclick = function() {
             url: "http://127.0.0.1:8000/rate?rate="+elements+"&idcom="+{{  b.id }},
             type: 'GET',
             success: function(response) {
-      window.location.assign("../ee");
+      window.location.assign("../stats");
             },
             error: function(xhr, status, error) {
                 $('#bac-table').html('<p>Error: ' + error + '</p>');
