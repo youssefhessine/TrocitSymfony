@@ -4,6 +4,22 @@
  {% extends 'baseback.html.twig' %}
  {% block body %}
         <h1 style="text-align: center;"> modifier Club </h1> 
+         <main id="main" class="main">
+
+    <div class="pagetitle">
+ 
+         
+           <center> <h3>Modifier Club </h3></center>
+
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+      <div class="row">
+
+
+         <section class="py-12">
+         <div class="container px-12 px-lg-12 mt-12">
+         <div class="row gx-12 gx-lg-12 row-cols-12 row-cols-md-12 row-cols-xl-12 justify-content-center">
 
  {{ form_start(f,{attr:{novalidate:'novalidate'}}) }}
 
@@ -15,13 +31,13 @@
               <!-- Vertical Form -->
               <form class="row g-3">
                 <div class="col-12">
-                  <label for="inputNanme4" class="form-label">nom publicite</label>
+                  <label for="inputNanme4" class="form-label">Nom Club</label>
                       {{ form_widget(f.nomPub, {'attr': {'class': 'form-control','type':'text', 'placeholder': 'Enter  nomPub'}}) }}
                                                                             {{ form_errors(f.nomPub,{ 'attr':{'class':'text-danger'}}) }}
 
                 </div>
                 <div class="col-12">
-                  <label for="inputAddress" class="form-label">description</label>
+                  <label for="inputAddress" class="form-label">Description</label>
                       {{ form_widget(f.description, {'attr': {'class': 'form-control','type':'text', 'placeholder': 'Enter  description'}}) }}
                                                       {{ form_errors(f.description,{ 'attr':{'class':'text-danger'}}) }}
 
@@ -34,7 +50,7 @@
 
 
                <div class="col-12">
-                  <label for="inputAddress" class="form-label">id Communaute</label>
+                  <label for="inputAddress" class="form-label">Id_Communaute</label>
                       {{ form_widget(f.idCommunaute) }}
                 </div>
     

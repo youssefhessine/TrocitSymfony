@@ -50,11 +50,11 @@ class ClubController extends AbstractController
         $result = $stmt->execute();
         $values = $result->fetch(PDO::FETCH_ASSOC);
         
-            $club = new Club();
-            $club->setId($values['id']);
-            $club->setNomPub($values['nom_pub']);
-            $club->setDescription($values['description']);
-            $club->setImage($values['image']);
+        $club = new Club();
+        $club->setId($values['id']);
+        $club->setNomPub($values['nom_pub']);
+        $club->setDescription($values['description']);
+        $club->setImage($values['image']);
         
 
         return $this->render('club/showrandpub.html.twig', [
@@ -70,11 +70,11 @@ class ClubController extends AbstractController
     {
        $rate=new Rating();
        $user=$entityManagerInterface->getRepository(Utilisateur::class)->findOneBy(array('id'=>"1"));
-       $pub=$entityManagerInterface->getRepository(club::class)->findOneBy(array('id'=>$request->query->get("idpub")));
+       $pub=$entityManagerInterface->getRepository(Club::class)->findOneBy(array('id'=>$request->query->get("idcom")));
 
             $rate->setRate($request->query->get("rate"));
             $rate->setIduser($user);
-            $rate->setIdpub($pub);
+            $rate->setIdcom($pub);
            $entityManagerInterface->persist($rate);
            $entityManagerInterface->flush();
            $json= new JsonResponse();
@@ -181,7 +181,7 @@ return $this->render('club/index.html.twig', [
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             $dates[] = $row["nom_pub"];
             $produitCount[] = $row["id"];
-            $sql2 = "SELECT SUM(rate)  as rate from rating where idpub=".strval($row["id"]) ;
+            $sql2 = "SELECT SUM(rate)  as rate from rating where idcom=".strval($row["id"]) ;
              $stmt2 = $em->getConnection()->prepare($sql2);
             $result2 = $stmt2->execute();
             $row2 = $result2->fetch(PDO::FETCH_ASSOC);
@@ -259,7 +259,7 @@ public function search(Request $request,SerializerInterface $serializer,EntityMa
     {
         $pub = $em->getRepository(Club::class)->findAll();
         
-        $json=$serializerInterface->serialize($pub,'json',['groups'=>'Publicite']);
+        $json=$serializerInterface->serialize($pub,'json',['groups'=>'Club']);
       
         return new Response($json);
     }
@@ -287,15 +287,15 @@ public function search(Request $request,SerializerInterface $serializer,EntityMa
      * @Route("/registerPublicite", name="registerPublicite")
      */
     public function registerPublicite( Request $request,SerializerInterface $serializer,EntityManagerInterface $manager){
-        $Pub = new Publicite();
+        $Pub = new Club();
 
 
         $Pub->setNomPub($request->query->get("Nom"));
         $Pub->setDescription($request->query->get("Description"));
         $Pub->setImage($request->query->get("Image"));
 
-        $Sponsor=$manager->getRepository(Communaute::class)->findOneBy(array('id'=>$request->query->get("id_Communaute")));
-        $Pub->setIdSponsor($Sponsor);
+        $Communaute=$manager->getRepository(Communaute::class)->findOneBy(array('id'=>$request->query->get("id_Communaute")));
+        $Pub->setIdCommunaute($Communaute);
         $manager->persist($Pub);
         $manager->flush();
         $json=$serializer->serialize($Pub,'json',['groups'=>'Communaute']);

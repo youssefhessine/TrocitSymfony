@@ -11,7 +11,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-class PubliciteType extends AbstractType
+class ClubType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {

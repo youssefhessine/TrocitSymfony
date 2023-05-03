@@ -9,6 +9,28 @@
           <!-- content-wrapper ends -->
           <!-- partial:partials/_footer.html -->
         
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Gestion Communaute</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+      </nav>
+         <a  class="btn btn-outline-dark mt-auto" href="{{path('addSponsor')}}">Ajouter nouveau</a>
+           <center> <h3>les communautes </h3></center>
+
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+      <div class="row">
+
+
+         <section class="py-12">
+         <div class="container px-12 px-lg-12 mt-12">
+         <div class="row gx-12 gx-lg-12 row-cols-12 row-cols-md-12 row-cols-xl-12 justify-content-center">
 <div class="table-responsive" >
 <table class="table">
   <thead>
@@ -45,4 +67,9 @@
   </tbody>
 </table>
 </div>
+</div>
+    
+    </div>
+    
+ </section><hr>
 {% endblock %}
