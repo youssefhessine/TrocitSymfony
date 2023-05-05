@@ -1,0 +1,52 @@
+{% block body %}
+<a href="{{ path('app_user_new') }}" class="btn btn-primary mt-4">Create new</a><br>
+<main id="main" class="main">
+
+    <div class="pagetitle">
+    </div>
+        <div class="card">
+            <div class="card-body">
+             
+              <!-- Table Variants -->
+              <table class="table datatable">
+                <thead>
+                  <tr>
+                <th scope="row">Prenom</th>
+                <th scope="row">Email</th>
+                <th scope="row">Role</th>
+                <th scope="row">actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                <tr >
+                <td>{{ user.prenom }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.role }}</td>
+                <td>
+                    <a href="{{ path('app_user_show', {'id': user.id}) }}" class="btn btn-primary mt-4">show</a><br>
+                    
+                </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+              <!-- End Table Variants -->
+
+            </div>
+          </div>
+          </main><!-- End #main -->
+
+          
+{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 2rem;
+        }
+    </style>
+{% endblock %}
+
+
+

@@ -55,6 +55,18 @@ class OffreRepository extends ServiceEntityRepository
 
     return $qb->getResult();
 }
+public function findOffresByUserId(int $userId): array
+{
+    $qb = $this->createQueryBuilder('o')
+        ->where('o.idUser = :userId')
+        ->setParameter('userId', $userId)
+        ->getQuery();
+
+    return $qb->getResult();
+}
+
+
+
 
 //    /**
 //     * @return Offre[] Returns an array of Offre objects

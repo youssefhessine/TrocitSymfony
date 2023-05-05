@@ -1,0 +1,123 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+
+
+   <main id="main" class="main">
+
+   
+
+    <section class="section profile">
+      <div class="row">
+        <div class="col-xl-4">
+
+          <div class="card">
+            <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdqXZFnoB9eMvcBSXMRQrtLBL_JhTfjZFbtcu9DiBoJfu4qqFZleZRD_6WTtfoMXkNZB0&usqp=CAU" alt="Profile" class="rounded-circle">
+              <h2>{{ user.Prenom }} {{ user.Nom }} </h2>
+              <h3>{{ user.Role }}</h3>
+                 <a href="{{ path('app_user_edit', {'id': user.id}) }}" class="btn btn-primary mt-4">edit</a>
+                 {{ include('user/_delete_form.html.twig') }}
+                
+
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-xl-8">
+
+          <div class="card">
+            <div class="card-body pt-3">
+              <!-- Bordered Tabs -->
+              <ul class="nav nav-tabs nav-tabs-bordered">
+
+                <li class="nav-item">
+                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
+                </li>
+
+              </ul>
+              <div class="tab-content pt-2">
+
+                <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                  
+                  <h5 class="card-title">Profile Details</h5>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label ">Nom</div>
+                    <div class="col-lg-9 col-md-8">{{ user.Nom }}</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Prenom</div>
+                    <div class="col-lg-9 col-md-8">{{ user.Prenom }}</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Adresse</div>
+                    <div class="col-lg-9 col-md-8">{{ user.Adresse }}</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Email</div>
+                    <div class="col-lg-9 col-md-8">{{ user.Email }}</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Genre</div>
+                    <div class="col-lg-9 col-md-8">{{ user.Genre }}</div>
+                  </div>
+
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Role</div>
+                    <div class="col-lg-9 col-md-8">{{ user.Role }}</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Numero</div>
+                    <div class="col-lg-9 col-md-8">{{ user.Numero }}</div>
+                  </div>
+
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Jeton</div>
+                    <div class="col-lg-9 col-md-8">{{ user.IdWallet.nbJeton }}</div>
+                  </div>
+
+                  
+
+                </div>
+
+                <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+
+                  
+                </div>
+
+                <div class="tab-pane fade pt-3" id="profile-settings">
+
+
+                </div>
+
+                
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+ 
+{% endblock %}
+
+
+
+
+
+
+
+

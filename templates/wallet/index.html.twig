@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}List of Wallet {% endblock %}
+
+{% block body %}
+    <h1 class="my-4">List of Wallet </h1>
+
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+            
+                <th scope="col">NbJeton</th>
+                <th scope="col">NbTransaction</th>
+                 <th scope="col">DateTransaction</th>
+                 <th scope="col">actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for wallet in wallets %}
+            <tr>
+            
+                <td>{{ wallet.nbJeton }}</td>
+                <td>{{ wallet.nbTransaction }}</td>
+                <td>{{ wallet.dateTransaction }}</td>
+                <td>
+                    <a href="{{ path('app_wallet_show', {'idWallet': wallet.idWallet}) }}"  class="btn btn-primary mt-4">show</a>
+                    <a href="{{ path('app_wallet_edit', {'idWallet': wallet.idWallet}) }}" class="btn btn-primary mt-4">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_wallet_new') }}" class="btn btn-primary mt-4">Create new</a>
+{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 2rem;
+        }
+    </style>
+{% endblock %}
+
+

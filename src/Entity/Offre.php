@@ -60,16 +60,14 @@ class Offre
      */
     private $imageFilename;
 
-    /*
-     * @var \User
+  /**
+     * @var int
      *
-     * @ORM\ManyToOne(targetEntity="User")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_user", referencedColumnName="id")
-     * })
-     *
+     * @ORM\Column(name="id_user", type="integer", nullable=false)
+     */
+    
     private $idUser;
-*/
+
     /**
      * @var \Categorie
      *
@@ -149,17 +147,18 @@ public function setCreatedAtValue(): void
 {
     return $this->getCategorie() ? $this->getCategorie()->getNom() : null;
 }
-/*public function getIdUser(): ?int
+public function getIdUser(): ?int
 {
     return $this->idUser;
 }
 
-public function setIdUser(int $id_user): self
+public function setIdUser(int $idUser): self
 {
-    $this->id_user = $id_user;
+    $this->idUser = $idUser;
 
     return $this;
-}*/
+}
+
 #[Vich\UploadableField(mapping: 'offre_images', fileNameProperty: 'imageFilename')]
 private ?File $imageFile = null;
 public function setImageFile(?File $imageFile = null): void
