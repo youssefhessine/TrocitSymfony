@@ -24,11 +24,14 @@ class Expertise
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="description", type="string", length=256, nullable=false)
-     */
-    private $description;
+ * @var string
+ * @Assert\Regex(
+ *     pattern="/^[^0-9]*$/",
+ *     message="La chaîne ne doit pas contenir de chiffres"
+ * )
+ * @ORM\Column(name="description", type="string", length=256, nullable=false)
+ */
+private $description;
 
     /**
      * @var string
@@ -38,10 +41,10 @@ class Expertise
     private $titre;
 
     /**
-     * @var \DateTime
-     * @Assert\LessThanOrEqual(value="today",message="La date ne doit pas dépasser aujourdhui")
-     * @ORM\Column(name="date", type="date", nullable=false)
-     */
+ * @var \DateTime
+ * @Assert\GreaterThanOrEqual(value="today", message="La date ne doit pas être antérieure à aujourd'hui")
+ * @ORM\Column(name="date", type="date", nullable=false)
+ */
     private $date;
 
     public function __toString(): string

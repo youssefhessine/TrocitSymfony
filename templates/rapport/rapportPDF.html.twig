@@ -64,9 +64,14 @@
             <td>{{ rapport.dateRapport ? rapport.dateRapport|date('Y-m-d') : '' }}</td>
         </tr>
         <tr>
+            <th>etat de rapport</th>
+             <td>{{ rapport.etatRapport }}</td>
+        </tr>
+        <tr>
             <th>Image</th>
             <td><img src="{{ rapport.image }}" alt=""></td>
         </tr>
+        
     </tbody>
 </table>
    <img src="public/assets/img/logoT.png" alt="">

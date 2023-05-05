@@ -13,6 +13,7 @@
                 <th>DescriptionProduit</th>
                 <th>DateRapport</th>
                 <th>Image</th>
+                <th>etat de rapport</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -24,6 +25,7 @@
                 <td>{{ rapport.descriptionProduit }}</td>
                 <td>{{ rapport.dateRapport ? rapport.dateRapport|date('Y-m-d') : '' }}</td>
                 <td>{{ rapport.image }}</td>
+                <td>{{ rapport.etatRapport }}</td>
                 <td>
                     <a href="{{ path('rapport_show', {'reference': rapport.reference}) }}" class="btn btn-success">Afficher</a>
                     <a href="{{ path('rapport_edit', {'reference': rapport.reference}) }}" class="btn btn-secondary">Modifier</a>

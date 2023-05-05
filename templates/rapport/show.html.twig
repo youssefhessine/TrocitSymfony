@@ -23,10 +23,15 @@
                 <th>DateRapport</th>
                 <td>{{ rapport.dateRapport ? rapport.dateRapport|date('Y-m-d') : '' }}</td>
             </tr>
+             <tr>
+                <th>Etat de rapport</th>
+                <td>{{ rapport.etatRapport}}</td>
+            </tr>
             <tr>
                 <th>Image</th>
                 <td>{{ rapport.image }}</td>
             </tr>
+           
         </tbody>
     </table>
 

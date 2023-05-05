@@ -44,16 +44,6 @@ class Livraison
     private $etatLivraison;
 
     /**
-     * @var \User
-     *
-     * @ORM\ManyToOne(targetEntity="User")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_livreur", referencedColumnName="id")
-     * })
-     */
-    private $idLivreur;
-
-    /**
      * @var \Troc
      *
      * @ORM\ManyToOne(targetEntity="Troc")
@@ -62,6 +52,16 @@ class Livraison
      * })
      */
     private $idTroc;
+
+    /**
+     * @var \User
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_livreur", referencedColumnName="id")
+     * })
+     */
+    private $idLivreur;
 
     public function getIdLivraison(): ?int
     {
@@ -104,18 +104,6 @@ class Livraison
         return $this;
     }
 
-    public function getIdLivreur(): ?User
-    {
-        return $this->idLivreur;
-    }
-
-    public function setIdLivreur(?User $idLivreur): self
-    {
-        $this->idLivreur = $idLivreur;
-
-        return $this;
-    }
-
     public function getIdTroc(): ?Troc
     {
         return $this->idTroc;
@@ -124,6 +112,18 @@ class Livraison
     public function setIdTroc(?Troc $idTroc): self
     {
         $this->idTroc = $idTroc;
+
+        return $this;
+    }
+
+    public function getIdLivreur(): ?User
+    {
+        return $this->idLivreur;
+    }
+
+    public function setIdLivreur(?User $idLivreur): self
+    {
+        $this->idLivreur = $idLivreur;
 
         return $this;
     }

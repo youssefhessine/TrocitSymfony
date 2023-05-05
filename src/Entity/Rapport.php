@@ -61,6 +61,14 @@ class Rapport
      */
     private $idExpertise;
 
+      /**
+     * @var string
+     *
+     * @ORM\Column(name="etat_rapport", type="string", length=254, nullable=false)
+     */
+    private $etatRapport;
+
+
     public function getReference(): ?int
     {
         return $this->reference;
@@ -114,6 +122,20 @@ class Rapport
         return $this;
     }
 
+  
+
+public function getEtatRapport(): ?string
+{
+    return $this->etatRapport;
+}
+
+public function setEtatRapport(?string $etatRapport): self
+{
+    $this->etatRapport = $etatRapport;
+
+    return $this;
+}
+
     public function getIdExpertise(): ?Expertise
     {
         return $this->idExpertise;
@@ -122,6 +144,18 @@ class Rapport
     public function setIdExpertise(?Expertise $idExpertise): self
     {
         $this->idExpertise = $idExpertise;
+
+        return $this;
+    }
+
+    public function getEtatapport(): ?string
+    {
+        return $this->etatapport;
+    }
+
+    public function setEtatapport(string $etatapport): self
+    {
+        $this->etatapport = $etatapport;
 
         return $this;
     }

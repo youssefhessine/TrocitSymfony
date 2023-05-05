@@ -75,20 +75,20 @@ class Troc
      *
      * @ORM\ManyToOne(targetEntity="Offre")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="produit1ref", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="produit2ref", referencedColumnName="id")
      * })
      */
-    private $produit1ref;
+    private $produit2ref;
 
     /**
      * @var \Offre
      *
      * @ORM\ManyToOne(targetEntity="Offre")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="produit2ref", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="produit1ref", referencedColumnName="id")
      * })
      */
-    private $produit2ref;
+    private $produit1ref;
 
     public function getIdTroc(): ?int
     {
@@ -179,18 +179,6 @@ class Troc
         return $this;
     }
 
-    public function getProduit1ref(): ?Offre
-    {
-        return $this->produit1ref;
-    }
-
-    public function setProduit1ref(?Offre $produit1ref): self
-    {
-        $this->produit1ref = $produit1ref;
-
-        return $this;
-    }
-
     public function getProduit2ref(): ?Offre
     {
         return $this->produit2ref;
@@ -199,6 +187,18 @@ class Troc
     public function setProduit2ref(?Offre $produit2ref): self
     {
         $this->produit2ref = $produit2ref;
+
+        return $this;
+    }
+
+    public function getProduit1ref(): ?Offre
+    {
+        return $this->produit1ref;
+    }
+
+    public function setProduit1ref(?Offre $produit1ref): self
+    {
+        $this->produit1ref = $produit1ref;
 
         return $this;
     }

@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Rapport;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -19,6 +20,13 @@ class RapportType extends AbstractType
             ->add('dateRapport',DateType::class,['attr' => ['class' => 'form-control']])
             ->add('image',TextType::class,['attr' => ['class' => 'form-control']])
             ->add('idExpertise')
+            ->add('etat_rapport', ChoiceType::class, [
+                'choices' => [
+                    'verifié' => 'verifié',
+                    'non verifié' => 'non verifié',
+                ],
+                'attr' => ['class' => 'form-control']
+            ])
         ;
     }
 
