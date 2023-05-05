@@ -3,28 +3,45 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use App\Repository\WalletRepository;
 
-#[ORM\Entity(repositoryClass: WalletRepository::class)]
+/**
+ * Wallet
+ *
+ * @ORM\Table(name="wallet")
+ * @ORM\Entity
+ */
 class Wallet
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column(name: "id_wallet")]
-    private ?int $idWallet = null;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id_wallet", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idWallet;
 
-    #[ORM\Column]
-    private ?int $nbJeton=null;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="nb_jeton", type="integer", nullable=false)
+     */
+    private $nbJeton;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="nb_transaction", type="integer", nullable=false)
+     */
+    private $nbTransaction;
 
-    #[ORM\Column]
-    private ?int $nbTransaction=null;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="date_transaction", type="string", length=256, nullable=false)
+     */
+    private $dateTransaction;
 
-
-    #[ORM\Column(length:256)]
-    private ?string $dateTransaction  = null ;
-
-    
     public function getIdWallet(): ?int
     {
         return $this->idWallet;

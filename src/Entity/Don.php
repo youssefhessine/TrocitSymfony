@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Don
@@ -20,53 +21,54 @@ class Don
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    private $idDon;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="nom", type="string", length=100, nullable=false)
-     */
-    private $nom;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="produit", type="string", length=100, nullable=false)
+     * @Assert\Length(min=3,max=20,minMessage="Au moins 3 caractères",maxMessage="Au max 20 caractères")
+     * @Assert\NotNull(message="Champ obligatoire")
+     * @ORM\Column(name="produit", type="string", length=250, nullable=false)
      */
     private $produit;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=100, nullable=false)
+     * @ORM\Column(name="image", type="string", length=250, nullable=false)
+     */
+    private $image;
+
+    /**
+     * @var string
+     * @Assert\NotNull(message="Champ obligatoire")
+     * @ORM\Column(name="description", type="text", length=250, nullable=false)
      */
     private $description;
 
     /**
      * @var \DateTime
-     *
+     * @Assert\LessThanOrEqual(value="today",message="Doit être inférieure à aujourdhui")
      * @ORM\Column(name="date", type="date", nullable=false)
      */
     private $date;
 
     /**
      * @var int
-     *
+     * @Assert\Positive(message="Jeton est positif")
      * @ORM\Column(name="jeton", type="integer", nullable=false)
      */
     private $jeton;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="image", type="string", length=100, nullable=false)
+     * @Assert\NotNull(message="Champ obligatoire")
+     * @ORM\Column(name="nom", type="string", length=250, nullable=false)
      */
-    private $image;
+    private $nom;
 
     /**
      * @var \Association
-     *
+     * @Assert\NotNull(message="Champ obligatoire")
      * @ORM\ManyToOne(targetEntity="Association")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_association", referencedColumnName="id")
@@ -74,21 +76,9 @@ class Don
      */
     private $idAssociation;
 
-    public function getId(): ?int
+    public function getIdDon(): ?int
     {
-        return $this->id;
-    }
-
-    public function getNom(): ?string
-    {
-        return $this->nom;
-    }
-
-    public function setNom(string $nom): self
-    {
-        $this->nom = $nom;
-
-        return $this;
+        return $this->idDon;
     }
 
     public function getProduit(): ?string
@@ -99,6 +89,18 @@ class Don
     public function setProduit(string $produit): self
     {
         $this->produit = $produit;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }
@@ -139,14 +141,14 @@ class Don
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getNom(): ?string
     {
-        return $this->image;
+        return $this->nom;
     }
 
-    public function setImage(string $image): self
+    public function setNom(string $nom): self
     {
-        $this->image = $image;
+        $this->nom = $nom;
 
         return $this;
     }

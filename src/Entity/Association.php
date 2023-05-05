@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Association
@@ -23,38 +24,38 @@ class Association
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="nom", type="string", length=100, nullable=false)
+     * @Assert\NotNull(message="Champ obligatoire")
+     * @ORM\Column(name="nom", type="string", length=250, nullable=false)
      */
     private $nom;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="responsable", type="string", length=100, nullable=false)
+     * @Assert\NotNull(message="Champ obligatoire")
+     * @ORM\Column(name="image", type="string", length=250, nullable=false)
      */
-    private $responsable;
+    private $image;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="metier", type="string", length=100, nullable=false)
-     */
-    private $metier;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="adresse", type="string", length=100, nullable=false)
+     * @Assert\NotNull(message="Champ obligatoire")
+     * @ORM\Column(name="adresse", type="string", length=250, nullable=false)
      */
     private $adresse;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="image", type="string", length=100, nullable=false)
+     * @Assert\NotNull(message="Champ obligatoire")
+     * @ORM\Column(name="metier", type="string", length=250, nullable=false)
      */
-    private $image;
+    private $metier;
+
+    /**
+     * @var string
+     * @Assert\NotNull(message="Champ obligatoire")
+     * @ORM\Column(name="responsable", type="string", length=250, nullable=false)
+     */
+    private $responsable;
 
     public function getId(): ?int
     {
@@ -73,26 +74,14 @@ class Association
         return $this;
     }
 
-    public function getResponsable(): ?string
+    public function getImage(): ?string
     {
-        return $this->responsable;
+        return $this->image;
     }
 
-    public function setResponsable(string $responsable): self
+    public function setImage(string $image): self
     {
-        $this->responsable = $responsable;
-
-        return $this;
-    }
-
-    public function getMetier(): ?string
-    {
-        return $this->metier;
-    }
-
-    public function setMetier(string $metier): self
-    {
-        $this->metier = $metier;
+        $this->image = $image;
 
         return $this;
     }
@@ -109,17 +98,32 @@ class Association
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getMetier(): ?string
     {
-        return $this->image;
+        return $this->metier;
     }
 
-    public function setImage(string $image): self
+    public function setMetier(string $metier): self
     {
-        $this->image = $image;
+        $this->metier = $metier;
 
         return $this;
     }
 
+    public function getResponsable(): ?string
+    {
+        return $this->responsable;
+    }
 
+    public function setResponsable(string $responsable): self
+    {
+        $this->responsable = $responsable;
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->nom;
+    }
 }

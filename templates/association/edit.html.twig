@@ -1,0 +1,12 @@
+{% extends 'baseback.html.twig' %}
+
+{% block title %}Edit Association{% endblock %}
+
+{% block body %}
+    <h1>Edit Association</h1>
+
+    {{ include('association/form.html.twig', {'button_label': 'Update'}) }}
+
+<a class="btn btn-outline-dark mt-auto" href="{{ path('association_index') }}">back to list</a>
+    {{ include('association/delete.html.twig') }}
+{% endblock %}

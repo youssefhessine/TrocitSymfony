@@ -1,0 +1,64 @@
+{% extends 'baseback.html.twig' %}
+
+{% block title %}Association index{% endblock %}
+
+{% block body %}
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Gestion Association </h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+      </nav>
+         <a  class="btn btn-outline-dark mt-auto" href="{{path('association_new')}}">Ajouter nouveau</a>
+           <center> <h3>les Association</h3></center>
+
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+      <div class="row">
+
+
+         <section class="py-12">
+         <div class="container px-12 px-lg-12 mt-12">
+         <div class="row gx-12 gx-lg-12 row-cols-12 row-cols-md-12 row-cols-xl-12 justify-content-center">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Image</th>
+                <th>Adresse</th>
+                <th>Metier</th>
+                <th>Responsable</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for association in associations %}
+            <tr>
+                <td>{{ association.id }}</td>
+                <td>{{ association.nom }}</td>
+                <td>{{ association.image }}</td>
+                <td>{{ association.adresse }}</td>
+                <td>{{ association.metier }}</td>
+                <td>{{ association.responsable }}</td>
+                <td>
+                    <a href="{{ path('association_show', {'id': association.id}) }}">show</a>
+                    <a href="{{ path('association_edit', {'id': association.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}
