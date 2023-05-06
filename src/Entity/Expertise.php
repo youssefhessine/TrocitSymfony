@@ -14,14 +14,19 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Expertise
 {
+    public function __toString(): string
+    {
+        return $this->titre;
+    }
+
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Column(name="id_expertise", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    private $id_expertise;
 
     /**
  * @var string
@@ -47,10 +52,7 @@ private $description;
  */
     private $date;
 
-    public function __toString(): string
-    {
-        return $this->titre;
-    }
+  
 
     /**
      * @var \Offre
@@ -62,9 +64,9 @@ private $description;
      */
     private $idOffre;
 
-    public function getId(): ?int
+    public function getId_expertise(): ?int
     {
-        return $this->id;
+        return $this->id_expertise;
     }
 
     public function getDescription(): ?string

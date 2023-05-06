@@ -19,7 +19,7 @@ class RapportType extends AbstractType
             ->add('descriptionProduit',TextType::class,['attr' => ['class' => 'form-control']])
             ->add('dateRapport',DateType::class,['attr' => ['class' => 'form-control']])
             ->add('image',TextType::class,['attr' => ['class' => 'form-control']])
-            ->add('idExpertise')
+            ->add('id_expertise')
             ->add('etat_rapport', ChoiceType::class, [
                 'choices' => [
                     'verifié' => 'verifié',

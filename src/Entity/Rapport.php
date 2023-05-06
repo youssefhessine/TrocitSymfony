@@ -56,10 +56,10 @@ class Rapport
      *
      * @ORM\ManyToOne(targetEntity="Expertise")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_expertise", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="id_expertise", referencedColumnName="id_expertise")
      * })
      */
-    private $idExpertise;
+    private $id_expertise;
 
       /**
      * @var string
@@ -138,12 +138,12 @@ public function setEtatRapport(?string $etatRapport): self
 
     public function getIdExpertise(): ?Expertise
     {
-        return $this->idExpertise;
+        return $this->id_expertise;
     }
 
-    public function setIdExpertise(?Expertise $idExpertise): self
+    public function setIdExpertise(?Expertise $id_expertise): self
     {
-        $this->idExpertise = $idExpertise;
+        $this->id_expertise = $id_expertise;
 
         return $this;
     }

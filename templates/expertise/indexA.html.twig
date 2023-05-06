@@ -17,7 +17,7 @@
         <tbody>
         {% for expertise in expertises %}
             <tr>
-                <td>{{ expertise.id }}</td>
+                <td>{{ expertise.id_expertise}}</td>
                 <td>{{ expertise.description }}</td>
                 <td>{{ expertise.titre }}</td>
                 <td>{{ expertise.date ? expertise.date|date('Y-m-d') : '' }}</td>
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 {
                     title: '{{ expertise.titre }}',
                     start: '{{ expertise.date ? expertise.date|date('Y-m-d') : '' }}',
-                    url: '{{ path('expertise_show', {'id': expertise.id}) }}'
+                    url: '{{ path('expertise_show', {'id': expertise.id_expertise}) }}'
                 },
             {% endfor %}
         ]
