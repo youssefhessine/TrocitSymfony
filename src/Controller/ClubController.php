@@ -294,7 +294,7 @@ public function search(Request $request,SerializerInterface $serializer,EntityMa
         $Pub->setDescription($request->query->get("Description"));
         $Pub->setImage($request->query->get("Image"));
 
-        $Communaute=$manager->getRepository(Communaute::class)->findOneBy(array('id'=>$request->query->get("id_Communaute")));
+        $Communaute=$manager->getRepository(Communaute::class)->findOneBy(array('id'=>$request->query->get("id_communaute")));
         $Pub->setIdCommunaute($Communaute);
         $manager->persist($Pub);
         $manager->flush();

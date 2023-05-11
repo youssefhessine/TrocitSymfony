@@ -82,7 +82,7 @@ class Club
 
     public function getIde(): ?int
     {
-        return $this->getIdCommunaute->getId();
+        return $this->idCommunaute->getId();
     }
 
 
